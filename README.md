@@ -62,8 +62,8 @@ It can detect in real time whether pedestrians passing by the detector are weari
 ### Components Used
 
 * OpenCV C++ API
-* QT C++ API
-* C++ Timer
+* A Raspberry PI 4B
+* PI Camera
 ### Built With
 
 * GitHub Pages
