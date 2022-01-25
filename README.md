@@ -107,7 +107,7 @@ See [`License`](https://github.com/JHCCCoder/Face_Mask_Detector/blob/dcd8f68986f
 
 * **Junhao Cheng** (https://github.com/JHCCCoder) 
 * **Minhao Han** (https://github.com/Hannidiot)
-* **Xiaoyang Wang** ()
+* **Xiaoyang Wang** (https://github.com/littlesheep666)
 * **Ning Li** ()
 
 
