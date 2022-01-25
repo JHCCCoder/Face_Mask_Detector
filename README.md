@@ -90,7 +90,7 @@ Say what the step will be
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-* This part mainly use to demonstarte the project.
+* This part mainly uses to demonstarte the project.
 
 
 <!-- LICENSE -->
