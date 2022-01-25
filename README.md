@@ -73,11 +73,10 @@ It can detect in real time whether pedestrians passing by the detector are weari
 ## Getting Started
 
 ### Prerequisites
+* What things you need to install the software and how to install them
 
-Specify which software dependencies and knowledgement are used and how to install them:
-
-  ```sh
-  to-do
+```sh
+  Give the example
   ```
 ### Installing
 
@@ -91,7 +90,7 @@ Say what the step will be
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-* Include screenshots, video demos and code examples to demonstrate the project.
+* This part mainly use to demonstarte the project.
 
 
 <!-- LICENSE -->
@@ -114,6 +113,6 @@ See [`License`](https://github.com/JHCCCoder/Face_Mask_Detector/blob/dcd8f68986f
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* 
-* 
-* 
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
