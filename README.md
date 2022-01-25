@@ -66,7 +66,7 @@ It can detect in real time whether pedestrians passing by the detector are weari
 * PI Camera
 ### Built With
 
-* GitHub Pages
+* GitHub
 * [Maven](https://maven.apache.org/) - Dependency Management
 
 <!-- GETTING STARTED -->
