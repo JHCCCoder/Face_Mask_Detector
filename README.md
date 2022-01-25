@@ -97,7 +97,7 @@ Say what the step will be
 <!-- LICENSE -->
 ## License
 
-Distributed under the Apache License 2.0. See [`LICENSE`](https://github.com/RTEP-zero-to-one/FacialDecorationTracing/blob/dev/LICENSE) for more information.
+See [`License`](https://github.com/Face_Mask_Detector/blob/dev/License) for more information.
 
 <!-- CONTACT -->
 
