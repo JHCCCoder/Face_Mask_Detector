@@ -97,7 +97,7 @@ Say what the step will be
 <!-- LICENSE -->
 ## License
 
-See [`License`](https://github.com/Face_Mask_Detector/blob/dev/License) for more information.
+See [`License`](https://github.com/JHCCCoder/Face_Mask_Detector/blob/dcd8f68986fc7e34de832a10df8d0544a1df5350/License) for more information.
 
 <!-- CONTACT -->
 
