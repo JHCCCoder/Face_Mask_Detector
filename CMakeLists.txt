@@ -5,9 +5,10 @@ project(FaceMaskDetector)
 
 # include Paddle Lite
 set (PADDLE_LITE_DIR
-        ${FaceMaskDetector_SOURCE_DIR}/lib/paddle-lite)
-include_directories (${PADDLE_LITE_DIR}/cxx/include)
-link_directories (${PADDLE_LITE_DIR}/cxx/lib)
+#        ${FaceMaskDetector_SOURCE_DIR}/lib/paddle-lite)
+        /Users/minhao/Downloads/inference_lite_lib_2.6.3/cxx)
+include_directories (${PADDLE_LITE_DIR}/include)
+link_directories (${PADDLE_LITE_DIR}/lib)
 
 add_subdirectory(src)
 add_subdirectory(test)

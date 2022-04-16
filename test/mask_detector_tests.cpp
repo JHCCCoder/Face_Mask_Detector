@@ -6,7 +6,6 @@
 #include "face_detector.h"
 #include "data_structures.h"
 
-using namespace boost::unit_test;
 using namespace paddle::lite_api;
 
 BOOST_AUTO_TEST_CASE(DetectFromImageTest) {
@@ -18,7 +17,7 @@ BOOST_AUTO_TEST_CASE(DetectFromImageTest) {
 
     MaskDetectorSetting setting({
         128, 128, 1.f / 256,
-        0.5f, "assets/mask_detector_opt2.nb"
+        0.5f, "assets/model.nb"
     });
     MaskDetector maskDetector(std::move(setting));
 
@@ -43,7 +42,7 @@ BOOST_AUTO_TEST_CASE(DetectFromImageFailTest) {
     });
     MaskDetectorSetting setting({
             128, 128, 1.f / 256,
-            0.5f, "assets/mask_detector_opt2.nb"
+            0.5f, "assets/model.nb"
     });
     MaskDetector maskDetector(std::move(setting));
     maskDetector.detect(image);

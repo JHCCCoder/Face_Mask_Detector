@@ -11,9 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef PADDLE_LITE_PLACE_H_  // NOLINT
-#define PADDLE_LITE_PLACE_H_
 
+#pragma once
 #include <set>
 #include <string>
 
@@ -58,12 +57,7 @@ enum class TargetType : int {
   kMLU = 11,
   kRKNPU = 12,
   kAPU = 13,
-  kHuaweiAscendNPU = 14,
-  kImaginationNNA = 15,
-  kIntelFPGA = 16,
-  kMetal = 17,
-  kNNAdapter = 18,
-  NUM = 19,  // number of fields.
+  NUM = 14,  // number of fields.
 };
 enum class PrecisionType : int {
   kUnk = 0,
@@ -75,9 +69,7 @@ enum class PrecisionType : int {
   kBool = 6,
   kInt64 = 7,
   kInt16 = 8,
-  kUInt8 = 9,
-  kFP64 = 10,
-  NUM = 11,  // number of fields.
+  NUM = 9,  // number of fields.
 };
 enum class DataLayoutType : int {
   kUnk = 0,
@@ -87,9 +79,7 @@ enum class DataLayoutType : int {
   kImageFolder = 5,   // for opencl image2d
   kImageNW = 6,       // for opencl image2d
   kAny = 2,           // any data layout
-  kMetalTexture2DArray = 7,
-  kMetalTexture2D = 8,
-  NUM = 9,  // number of fields.
+  NUM = 7,            // number of fields.
 };
 
 typedef enum {
@@ -100,19 +90,6 @@ typedef enum {
   LITE_POWER_RAND_HIGH = 4,
   LITE_POWER_RAND_LOW = 5
 } PowerMode;
-
-typedef enum {
-  CL_TUNE_NONE = 0,
-  CL_TUNE_RAPID = 1,
-  CL_TUNE_NORMAL = 2,
-  CL_TUNE_EXHAUSTIVE = 3
-} CLTuneMode;
-
-typedef enum {
-  CL_PRECISION_AUTO = 0,
-  CL_PRECISION_FP32 = 1,
-  CL_PRECISION_FP16 = 2
-} CLPrecisionType;
 
 typedef enum { MLU_220 = 0, MLU_270 = 1 } MLUCoreVersion;
 
@@ -129,28 +106,13 @@ enum class ActivationType : int {
   kAbs = 9,
   kHardSwish = 10,
   kReciprocal = 11,
-  kThresholdedRelu = 12,
-  kElu = 13,
-  kHardSigmoid = 14,
-  kLog = 15,
-  kSigmoid_v2 = 16,
-  kTanh_v2 = 17,
-  kGelu = 18,
-  kErf = 19,
-  kSign = 20,
-  kSoftPlus = 21,
-  kMish = 22,
-  NUM = 23,
+  NUM = 12,
 };
 
 static size_t PrecisionTypeLength(PrecisionType type) {
   switch (type) {
     case PrecisionType::kFloat:
       return 4;
-    case PrecisionType::kFP64:
-      return 8;
-    case PrecisionType::kUInt8:
-      return 1;
     case PrecisionType::kInt8:
       return 1;
     case PrecisionType::kInt32:
@@ -159,17 +121,10 @@ static size_t PrecisionTypeLength(PrecisionType type) {
       return 8;
     case PrecisionType::kFP16:
       return 2;
-    case PrecisionType::kInt16:
-      return 2;
     default:
-      return 0;
+      return 4;
   }
 }
-
-enum class QuantType : int {
-  QUANT_INT8,
-  QUANT_INT16,
-};
 
 template <typename T>
 struct PrecisionTypeTrait {
@@ -182,8 +137,6 @@ struct PrecisionTypeTrait {
 #define _ForEachPrecisionType(callback)                   \
   _ForEachPrecisionTypeHelper(callback, bool, kBool);     \
   _ForEachPrecisionTypeHelper(callback, float, kFloat);   \
-  _ForEachPrecisionTypeHelper(callback, double, kFP64);   \
-  _ForEachPrecisionTypeHelper(callback, uint8_t, kUInt8); \
   _ForEachPrecisionTypeHelper(callback, int8_t, kInt8);   \
   _ForEachPrecisionTypeHelper(callback, int16_t, kInt16); \
   _ForEachPrecisionTypeHelper(callback, int, kInt32);     \
@@ -196,11 +149,6 @@ struct PrecisionTypeTrait {
   }
 
 _ForEachPrecisionType(DefinePrecisionTypeTrait);
-
-#ifdef ENABLE_ARM_FP16
-typedef __fp16 float16_t;
-_ForEachPrecisionTypeHelper(DefinePrecisionTypeTrait, float16_t, kFP16);
-#endif
 
 #undef _ForEachPrecisionTypeHelper
 #undef _ForEachPrecisionType
@@ -223,10 +171,6 @@ const std::string& TargetRepr(TargetType target);
 const std::string& PrecisionRepr(PrecisionType precision);
 
 const std::string& DataLayoutRepr(DataLayoutType layout);
-
-const std::string& CLTuneModeToStr(CLTuneMode mode);
-
-const std::string& CLPrecisionTypeToStr(CLPrecisionType type);
 
 // Get a set of all the elements represented by the target.
 std::set<TargetType> ExpandValidTargets(TargetType target = TARGET(kAny));
@@ -277,5 +221,3 @@ struct LITE_API Place {
 
 }  // namespace lite_api
 }  // namespace paddle
-
-#endif // PADDLE_LITE_PLACE_H_

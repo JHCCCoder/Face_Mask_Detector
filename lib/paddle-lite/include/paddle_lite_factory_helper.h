@@ -16,8 +16,7 @@
  * This file defines some MACROS that explicitly determine the op, kernel, mir
  * passes used in the inference lib.
  */
-#ifndef PADDLE_LITE_FACTORY_HELPER_H_  // NOLINT
-#define PADDLE_LITE_FACTORY_HELPER_H_
+#pragma once
 
 // some platform-independent defintion
 
@@ -43,5 +42,3 @@
       mir_pass_registry##name__##_fake();
 
 #define LITE_OP_REGISTER_FAKE(op_type__) op_type__##__registry__
-
-#endif // PADDLE_LITE_FACTORY_HELPER_H_

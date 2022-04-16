@@ -1,7 +1,6 @@
 #include "mask_detector.h"
 
-MaskDetector::MaskDetector(MaskDetectorSetting&& mdSetting)
-: maskDetectionSetting(mdSetting){
+MaskDetector::MaskDetector(MaskDetectorSetting&& mdSetting) : maskDetectionSetting(mdSetting){
     mobileConfig.set_model_from_file(mdSetting.modelPath);
     predictor = CreatePaddlePredictor<MobileConfig>(mobileConfig);
     inputTensor = std::move(predictor->GetInput(0));
