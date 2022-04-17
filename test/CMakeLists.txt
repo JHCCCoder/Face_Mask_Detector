@@ -20,3 +20,12 @@ target_link_libraries (FaceDetectorTest
         ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
         ${OpenCV_LIBS}
         )
+
+add_executable (BboxTrackerTest bbox_tracker_tests.cpp)
+target_link_libraries (BboxTrackerTest
+        FaceMaskDetectionLib
+        ${Boost_FILESYSTEM_LIBRARY}
+        ${Boost_SYSTEM_LIBRARY}
+        ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+        ${OpenCV_LIBS}
+        )
