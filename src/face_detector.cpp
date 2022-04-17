@@ -87,24 +87,24 @@ void FaceDetector::generateBBox(std::vector<FaceInfo> &bbox_collection, cv::Mat 
     for (int i = 0; i < num_anchors; i++) {
         float score = score_value[2 * i + 1];
         if (score_value[2 * i + 1] > score_threshold) {
-            FaceInfo rects = {0};
+            FaceInfo face = {0};
             float x_center = bbox_value[i * 4] * center_variance * priors[i][2] + priors[i][0];
             float y_center = bbox_value[i * 4 + 1] * center_variance * priors[i][3] + priors[i][1];
             float w = exp(bbox_value[i * 4 + 2] * size_variance) * priors[i][2];
             float h = exp(bbox_value[i * 4 + 3] * size_variance) * priors[i][3];
 
-            rects.x1 = clip(x_center - w / 2.0, 1) * image_w;
-            rects.y1 = clip(y_center - h / 2.0, 1) * image_h;
-            rects.x2 = clip(x_center + w / 2.0, 1) * image_w;
-            rects.y2 = clip(y_center + h / 2.0, 1) * image_h;
-            rects.score = clip(score_value[2 * i + 1], 1);
-            bbox_collection.push_back(rects);
+            face.x1 = clip(x_center - w / 2.0, 1) * image_w;
+            face.y1 = clip(y_center - h / 2.0, 1) * image_h;
+            face.x2 = clip(x_center + w / 2.0, 1) * image_w;
+            face.y2 = clip(y_center + h / 2.0, 1) * image_h;
+            face.faceScore = clip(score_value[2 * i + 1], 1);
+            bbox_collection.push_back(face);
         }
     }
 }
 
 void FaceDetector::nms(std::vector<FaceInfo> &input, std::vector<FaceInfo> &output, int type) {
-    std::sort(input.begin(), input.end(), [](const FaceInfo &a, const FaceInfo &b) { return a.score > b.score; });
+    std::sort(input.begin(), input.end(), [](const FaceInfo &a, const FaceInfo &b) { return a.faceScore > b.faceScore; });
 
     int box_num = input.size();
 
@@ -163,17 +163,17 @@ void FaceDetector::nms(std::vector<FaceInfo> &input, std::vector<FaceInfo> &outp
             case blending_nms: {
                 float total = 0;
                 for (int i = 0; i < buf.size(); i++) {
-                    total += exp(buf[i].score);
+                    total += exp(buf[i].faceScore);
                 }
                 FaceInfo rects;
                 memset(&rects, 0, sizeof(rects));
                 for (int i = 0; i < buf.size(); i++) {
-                    float rate = exp(buf[i].score) / total;
+                    float rate = exp(buf[i].faceScore) / total;
                     rects.x1 += buf[i].x1 * rate;
                     rects.y1 += buf[i].y1 * rate;
                     rects.x2 += buf[i].x2 * rate;
                     rects.y2 += buf[i].y2 * rate;
-                    rects.score += buf[i].score * rate;
+                    rects.faceScore += buf[i].faceScore * rate;
                 }
                 output.push_back(rects);
                 break;
