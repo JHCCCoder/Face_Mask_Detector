@@ -10,7 +10,7 @@
 
 using namespace boost::unit_test;
 
-BOOST_AUTO_TEST_CASE(DetectImageTest) {
+BOOST_AUTO_TEST_CASE(DetectFromImageTest) {
     std::string model_path = "assets";
     FaceDetector detector(model_path, 320, 240);
 
