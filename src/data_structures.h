@@ -42,4 +42,14 @@ struct FaceDetectorSetting {
 
 };
 
+struct TrackingObj {
+    uint id;
+    cv::Point2f midpoint;
+    int disappearCnt;
+};
+
+struct TrackerSetting {
+    int frameToDisappear;
+};
+
 #endif //FACE_MASK_DETECTOR_DATA_STRUCTURES_H_
