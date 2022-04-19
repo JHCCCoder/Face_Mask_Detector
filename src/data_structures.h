@@ -4,6 +4,12 @@
 #include <opencv2/opencv.hpp>
 #include <vector>
 
+enum MaskWearingType {
+    WEARING_MASK = 0,
+    NO_MASK = 1,
+    INCORRECT_WEARING = 2
+};
+
 struct FaceInfo {
     // bounding box coordinates
     float x1;
@@ -21,9 +27,13 @@ struct FaceInfo {
     // mask confidence faceScore
     float maskScore;
     bool isWearingMask;
+
+    // confidence score
+    float confidence;
+    MaskWearingType maskWearingType;
 };
 
-struct Image {
+struct InferenceResult {
     cv::Mat frame;
     std::vector<FaceInfo> faceList;
 };
