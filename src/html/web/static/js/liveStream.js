@@ -11,9 +11,7 @@ $(document).ready(function() {
             $("#imageBase").html('<img src="'+path+'"/>');
 
         });
-    }, 1000);
-
-
+    }, 50);
 
     $("#driver").click(function(event){
         var coordinate_x1 = $("#coordinate_x1").val();
