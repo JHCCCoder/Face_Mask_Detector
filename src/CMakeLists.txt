@@ -1,6 +1,10 @@
 set (LIB_SRC
         bbox_tracker.cpp
-        face_mask_detector.cpp)
+        face_mask_detector.cpp
+        pipeline.cpp
+        mysql_connection.cpp
+        cgi_callback.cpp
+        default_settings.cpp)
 
 # opencv packages
 find_package (OpenCV REQUIRED)
