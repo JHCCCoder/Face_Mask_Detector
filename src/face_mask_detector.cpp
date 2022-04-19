@@ -4,9 +4,8 @@
 #include "face_mask_detector.h"
 
 #define COLOR_MASK cv::Scalar(100, 255, 0)
-#define COLOR_NO_MASK cv::Scalar(255, 0, 0)
-#define COLOR_WRONG_MASK cv::Scalar(252, 149, 5)
-
+#define COLOR_NO_MASK cv::Scalar(0, 0, 255)
+#define COLOR_WRONG_MASK cv::Scalar(5, 149, 252)
 
 FaceMaskDetector::FaceMaskDetector(const std::string& modelPath, float confidenceThreshold)
                                    : confidenceThreshold(confidenceThreshold) {
@@ -30,12 +29,14 @@ InferenceResult FaceMaskDetector::process(cv::Mat &image) {
     auto inputTensor = interpreter->typed_tensor<float>(interpreter->inputs()[0]);
     preprocess(image, inputTensor);
 
+    interpreter->Invoke();
+
     const float* detectionBboxes = interpreter->tensor(interpreter->outputs()[0])->data.f;
     const float* detectionClasses = interpreter->tensor(interpreter->outputs()[1])->data.f;
     const float* detectionConfidences = interpreter->tensor(interpreter->outputs()[2])->data.f;
     const int numDetections = int(*interpreter->tensor(interpreter->outputs()[3])->data.f);
 
-    InferenceResult result({std::move(image)});
+    InferenceResult result;
     for (int i = 0; i < numDetections; i++) {
         if (detectionConfidences[i] > confidenceThreshold) {
             int type = int(detectionClasses[i]);
@@ -56,31 +57,32 @@ InferenceResult FaceMaskDetector::process(cv::Mat &image) {
             cv::Rect2f rect(topLeft, bottomRight);
             if (type == 0) {
                 face.maskWearingType = WEARING_MASK;
-                cv::rectangle(result.frame, rect, COLOR_MASK, 2);
-                cv::putText(result.frame, "Wearing mask", cv::Point2f(x1, y1-5),
+                cv::rectangle(image, rect, COLOR_MASK, 2);
+                cv::putText(image, "Wearing mask", cv::Point2f(x1, y1-5),
                             cv::FONT_HERSHEY_SIMPLEX, 0.7, COLOR_MASK, 1);
             }
             else if (type == 1) {
                 face.maskWearingType = NO_MASK;
-                cv::rectangle(result.frame, rect, COLOR_NO_MASK, 2);
-                cv::putText(result.frame, "No mask", cv::Point2f(x1, y1-5),
+                cv::rectangle(image, rect, COLOR_NO_MASK, 2);
+                cv::putText(image, "No mask", cv::Point2f(x1, y1-5),
                             cv::FONT_HERSHEY_SIMPLEX, 0.7, COLOR_NO_MASK, 1);
             }
             else if (type == 2) {
                 face.maskWearingType = INCORRECT_WEARING;
-                cv::rectangle(result.frame, rect, COLOR_WRONG_MASK, 2);
-                cv::putText(result.frame, "Incorrect wearing", cv::Point2f(x1, y1-5),
+                cv::rectangle(image, rect, COLOR_WRONG_MASK, 2);
+                cv::putText(image, "Incorrect wearing", cv::Point2f(x1, y1-5),
                             cv::FONT_HERSHEY_SIMPLEX, 0.7, COLOR_WRONG_MASK, 1);
             }
 
             result.faceList.push_back(face);
         }
     }
+    result.frame = std::move(image);
 
     return result;
 }
 
-void FaceMaskDetector::preprocess(cv::Mat &image, float *out) const {
+void FaceMaskDetector::preprocess(const cv::Mat &image, float *out) const {
     cv::Mat tmp;
     cv::resize(image, tmp, cv::Size(modelWidth, modelHeight), cv::INTER_NEAREST);
 

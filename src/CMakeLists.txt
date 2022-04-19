@@ -4,6 +4,7 @@ set (LIB_SRC
 
 # opencv packages
 find_package (OpenCV REQUIRED)
+include_directories("${OpenCV_INCLUDE_DIRS}")
 
 # include Tensorflow lite
 if(NOT TENSORFLOW_SOURCE_DIR)
@@ -12,10 +13,7 @@ if(NOT TENSORFLOW_SOURCE_DIR)
 endif()
 include_directories("${TENSORFLOW_SOURCE_DIR}")
 include_directories("${TENSORFLOW_SOURCE_DIR}/tensorflow/lite")
-include_directories("${OpenCV_INCLUDE_DIRS}")
-SET (TFL_BUILD_DIR
-        ${FaceMaskDetector_SOURCE_DIR}/../tfl_build)
-link_directories (${TFL_BUILD_DIR}/rpi_armv7l/lib)
+link_directories(${FaceMaskDetector_SOURCE_DIR}/../tfl_build/rpi_armv7l/lib)
 
 # include flatbuffers
 SET(FLAT_BUFFERS_DIR

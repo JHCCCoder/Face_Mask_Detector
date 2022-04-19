@@ -18,7 +18,7 @@ private:
     int modelHeight;
     float confidenceThreshold;
 
-    void preprocess(cv::Mat& image, float* out) const;
+    void preprocess(const cv::Mat& image, float* out) const;
 };
 
 #endif // FACE_DETECTOR_H_
