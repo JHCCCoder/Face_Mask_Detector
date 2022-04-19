@@ -3,11 +3,11 @@
 #define COLOR_DEFAULT_CROSS_LINE cv::Scalar(0, 0, 0)
 
 namespace Setting {
-    TrackerSetting defaultTrackerSetting({10});
+    TrackerSetting defaultTrackerSetting({30});
 
     CrossLineSetting defaultCrossLineSetting({
-        {0, 0},
-        {0, 0},
+        {0, 240},
+        {640, 240},
         {COLOR_DEFAULT_CROSS_LINE},
         2
     });

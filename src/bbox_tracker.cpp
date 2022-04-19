@@ -103,10 +103,13 @@ void BboxTracker::update(const std::vector<FaceInfo>& faceRects) {
 
 void BboxTracker::registerObj(cv::Point2f midpoint) {
     TrackingObj obj({nextId++, midpoint, midpoint, 0, false});
+    std::cout << "new tracking object: " << obj.id << ", object nums: " << this->trackingList.size() << std::endl;
     this->trackingList.push_back(obj);
 }
 
 void BboxTracker::deregisterObj(uint objectId) {
+    std::cout << "deregistered tracking object: " << objectId
+        << ", object nums: " << this->trackingList.size() - 1 << std::endl;
     trackingList.erase(std::remove_if(this->trackingList.begin(), this->trackingList.end(),
                    [objectId](const TrackingObj& obj) { return obj.id == objectId; }),trackingList.end());
 }

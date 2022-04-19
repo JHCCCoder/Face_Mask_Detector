@@ -1,6 +1,10 @@
-//
-// Created by LittleSheep on 18/04/2022.
-//
+/**
+ * @file pipeline.h
+ * @brief Main pipeline for the PosturePerfection system
+ *
+ * @copyright Copyright (C) 2021  Miklas Riechmann
+ *
+ */
 
 #ifndef MYSQL_CONNECTION_H_
 #define MYSQL_CONNECTION_H_
