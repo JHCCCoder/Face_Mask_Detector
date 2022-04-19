@@ -55,3 +55,7 @@ _deps
 # executable
 FaceMaskDetector
 test/*Test
+
+# python web
+__pycache__/
+
