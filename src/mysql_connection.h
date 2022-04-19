@@ -2,8 +2,8 @@
 // Created by LittleSheep on 18/04/2022.
 //
 
-#ifndef MYSQLTEST_MYSQLCONN_H
-#define MYSQLTEST_MYSQLCONN_H
+#ifndef MYSQL_CONNECTION_H_
+#define MYSQL_CONNECTION_H_
 
 #include <mysql.h>
 #include <iostream>
@@ -69,4 +69,4 @@ public:
 };
 
 
-#endif //MYSQLTEST_MYSQLCONN_H
+#endif //MYSQL_CONNECTION_H_

@@ -2,7 +2,7 @@
 // Created by LittleSheep on 18/04/2022.
 //
 
-#include "MysqlConn.h"
+#include "mysql_connection.h"
 
 bool MysqlConn::ConnectMysql() {
     mysql_init(&mysql);//初始化mysql
