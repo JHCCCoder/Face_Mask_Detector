@@ -13,11 +13,17 @@ static const std::string base64_chars =
         "abcdefghijklmnopqrstuvwxyz"
         "0123456789+/";
 
+
 static inline bool is_base64(const char c)
 {
     return (isalnum(c) || (c == '+') || (c == '/'));
 }
-
+/**
+ * @brief Transcoding the data into base64 format.
+ * @param bytes_to_encode Data to be encoded
+ * @param in_len The length of the data to be encoded
+ * @return Return the converted data.
+ */
 std::string base64_encode(const char * bytes_to_encode, unsigned int in_len)
 {
     std::string ret;
@@ -68,6 +74,11 @@ std::string base64_encode(const char * bytes_to_encode, unsigned int in_len)
     return ret;
 }
 
+/**
+ * @brief Decode data in base64 format to string type.
+ * @param encoded_string Data to be decoded.
+ * @return Returns string type, decoded data.
+ */
 std::string base64_decode(std::string const & encoded_string)
 {
     int in_len = (int) encoded_string.size();
