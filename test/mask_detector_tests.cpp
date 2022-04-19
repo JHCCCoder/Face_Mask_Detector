@@ -12,7 +12,7 @@ BOOST_AUTO_TEST_CASE(DetectFromImageTest) {
     std::string model_path = "assets";
     FaceDetector detector(model_path, 320, 240);
 
-    Image image({cv::imread("test/test_img.jpg")});
+    InferenceResult image({cv::imread("test/test_img.jpg")});
     detector.detect(image.frame, image.faceList);
 
     MaskDetectorSetting setting({
@@ -37,8 +37,8 @@ BOOST_AUTO_TEST_CASE(DetectFromImageFailTest) {
     std::string model_path = "assets";
     FaceDetector detector(model_path, 320, 240);
 
-    Image image({cv::imread("test/test_img.jpg"),
-                 { FaceInfo({0, 0, 5, 5}) }
+    InferenceResult image({cv::imread("test/test_img.jpg"),
+                           { FaceInfo({0, 0, 5, 5}) }
     });
     MaskDetectorSetting setting({
             128, 128, 1.f / 256,
