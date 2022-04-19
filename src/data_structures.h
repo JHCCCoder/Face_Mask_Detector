@@ -11,24 +11,9 @@ enum MaskWearingType {
 };
 
 struct FaceInfo {
-    // bounding box coordinates
-    float x1;
-    float y1;
-    float x2;
-    float y2;
-
-    // todo: refactor coordinates with cv::Point
     cv::Point2f topLeft;
     cv::Point2f bottomRight;
 
-    // face confidence faceScore
-    float faceScore;
-
-    // mask confidence faceScore
-    float maskScore;
-    bool isWearingMask;
-
-    // confidence score
     float confidence;
     MaskWearingType maskWearingType;
 };
@@ -36,20 +21,6 @@ struct FaceInfo {
 struct InferenceResult {
     cv::Mat frame;
     std::vector<FaceInfo> faceList;
-};
-
-struct MaskDetectorSetting {
-    int normalisedWidth;
-    int normalisedHeight;
-    float scaleFactor;
-    float scoreThreshold;
-    std::string modelPath;
-
-    inline int imageSize() const { return normalisedHeight * normalisedWidth; }
-};
-
-struct FaceDetectorSetting {
-    float confidenceThreshold;
 };
 
 struct TrackingObj {
