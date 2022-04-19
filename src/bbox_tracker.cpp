@@ -1,7 +1,9 @@
 #include <set>
+#include <opencv2/imgproc.hpp>
 
 #include "bbox_tracker.h"
 
+// class BboxTracker
 BboxTracker::BboxTracker(TrackerSetting &&setting)
     : trackerSetting(setting) {
     nextId = 0;
@@ -29,7 +31,7 @@ void BboxTracker::update(const std::vector<FaceInfo>& faceRects) {
     // if no tracking object is recorded, register all points as tracking objects
     if (trackingList.empty()) {
         for (auto& point : inputMidPoints) {
-            registerObj(&point);
+            registerObj(point);
         }
     }
 
@@ -41,7 +43,7 @@ void BboxTracker::update(const std::vector<FaceInfo>& faceRects) {
         for (auto& obj : trackingList) {
             for (auto& point : inputMidPoints) {
                 pointDistances.push_back({
-                    &obj, &point, calcDistance(obj.midpoint, point)
+                    &obj, &point, calcDistance(obj.curMidpoint, point)
                 });
             }
         }
@@ -76,7 +78,7 @@ void BboxTracker::update(const std::vector<FaceInfo>& faceRects) {
             }), pointDistances.end());
 
             // update tracking object coordinates
-            minPd->src->midpoint = *minPd->target;
+            minPd->src->curMidpoint = *minPd->target;
         }
 
         // in the event that the number of tracker objects is greater than
@@ -92,21 +94,21 @@ void BboxTracker::update(const std::vector<FaceInfo>& faceRects) {
         // else some new object could potentially appear in camera
         // register this object as a new tracking object
         else {
-            for (auto point : unusedMidPoints) {
-                registerObj(point);
+            for (auto& point : unusedMidPoints) {
+                registerObj(*point);
             }
         }
     }
 }
 
-void BboxTracker::registerObj(cv::Point2f* midpoint) {
-    TrackingObj obj({nextId++, *midpoint, 0});
+void BboxTracker::registerObj(cv::Point2f midpoint) {
+    TrackingObj obj({nextId++, midpoint, midpoint, 0, false});
     this->trackingList.push_back(obj);
 }
 
 void BboxTracker::deregisterObj(uint objectId) {
     trackingList.erase(std::remove_if(this->trackingList.begin(), this->trackingList.end(),
-                   [objectId](const TrackingObj& obj) { return obj.id == objectId; }), trackingList.end());
+                   [objectId](const TrackingObj& obj) { return obj.id == objectId; }),trackingList.end());
 }
 
 const std::vector<TrackingObj> &BboxTracker::getTrackingList() const {
@@ -123,4 +125,46 @@ cv::Point2f BboxTracker::getMidpoint2f(const cv::Point2f &pt1, const cv::Point2f
 
 cv::Point2f BboxTracker::getMidpoint2f(float x1, float x2, float y1, float y2) {
     return {(x1 + x2) / 2, (y1 + y2) / 2};
+}
+// class BboxTracker ends
+
+
+EntryCheck::EntryCheck(CrossLineSetting &&setting, EntryCheck::OnCrossCallBack *callback)
+    : crossLineSetting(setting),
+    onCrossCallBack(callback) {
+
+}
+
+void EntryCheck::drawCrossLine(Image &image) {
+    cv::line(image.frame, crossLineSetting.pt1, crossLineSetting.pt2,
+             crossLineSetting.color, crossLineSetting.thickness);
+}
+
+void EntryCheck::checkCross(TrackingObj &obj) {
+    if (obj.crossLineStatus) return;
+
+    // check if the line segments of tracking objects moving trace and crossLine intersect
+    float d1 = direction(obj.startPoint, obj.curMidpoint, crossLineSetting.pt1);
+    float d2 = direction(obj.startPoint, obj.curMidpoint, crossLineSetting.pt2);
+    float d3 = direction(crossLineSetting.pt1, crossLineSetting.pt2, obj.startPoint);
+    float d4 = direction(crossLineSetting.pt1, crossLineSetting.pt2, obj.curMidpoint);
+
+    bool isCross = ((d1 > 0 && d2 < 0) || (d1 < 0 && d2 > 0)) &&
+                   ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0));
+
+    if (isCross) {
+        obj.crossLineStatus = true;
+
+        if (onCrossCallBack != nullptr) {
+            onCrossCallBack->callback(obj);
+        }
+    }
+}
+
+void EntryCheck::setCrossLineSetting(CrossLineSetting &&setting) {
+    crossLineSetting = setting;
+}
+
+float EntryCheck::direction(const cv::Point2f &linePt1, const cv::Point2f &linePt2, const cv::Point2f &targetPt) {
+    return ((targetPt.x - linePt1.x)*(linePt2.y - linePt1.y)) - ((linePt2.x - linePt1.x)*(targetPt.y - linePt1.y));
 }
