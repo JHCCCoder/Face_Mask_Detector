@@ -5,9 +5,9 @@
 #include "mysql_connection.h"
 
 bool MysqlConn::ConnectMysql() {
-    mysql_init(&mysql);//初始化mysql
+    mysql_init(&mysql);//init mysql
     if (!(mysql_real_connect(&mysql,
-                             "localhost",//主机
+                             "localhost",//hostname
                              "root",//username
                              "123456",//password
                              "mask_detection",//dabasename
@@ -28,11 +28,6 @@ void MysqlConn::FreeConnect() {
     cout << ">>  Free Successful" << endl;
 }
 
-/**
- * select
- * @param SQL
- * @return str
- */
 string MysqlConn::SelectData( const char * SQL)
 {
     MYSQL_ROW m_row;
@@ -71,11 +66,6 @@ string MysqlConn::SelectData( const char * SQL)
     return str;
 }
 
-/**
- * insert
- * @param SQL
- * @return
- */
 int MysqlConn::InsertData(const char *SQL){
     char sql[2048];
     sprintf(sql,"%s",SQL);
@@ -86,11 +76,6 @@ int MysqlConn::InsertData(const char *SQL){
     return 0;
 }
 
-/**
- * update
- * @param SQL
- * @return
- */
 int MysqlConn::UpdateData(const char * SQL){
     char sql[2048];
     sprintf(sql,"%s",SQL);
@@ -101,11 +86,6 @@ int MysqlConn::UpdateData(const char * SQL){
     return 0;
 }
 
-/**
- * delete
- * @param SQL
- * @return
- */
 int MysqlConn::DeleteData(const char * SQL)
 {
     char sql[2048];
@@ -118,13 +98,13 @@ int MysqlConn::DeleteData(const char * SQL)
     return 0;
 }
 
-//测试代码
+// test code
 int main() {
     MysqlConn * conn = new MysqlConn();
     // connect Mysql
     conn->ConnectMysql();
 
-    /**
+    /*
      * select
      */
     const char *SQL ="";
@@ -139,7 +119,7 @@ int main() {
 //        printf("%s",Msg);
 //    }
 
-    /**
+    /*
      * insert
      */
 //    SQL = "insert into user(username,age) values('aa','30')";
@@ -147,7 +127,7 @@ int main() {
 //        printf("insert successful \n");
 
 
-    /**
+    /*
      * update
      */
 //    SQL = "update user set username = 'bbb',age='23' where uid = 3 ";
