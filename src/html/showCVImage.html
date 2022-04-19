@@ -19,6 +19,18 @@
 
 	  <div id="imageBase"></div>
 
+	  <div class="row">
+		  <form class="liveForm">
+			  <span>Parameters of the mask identification line：</span><br/><br>
+			  <input type="text" class="liveFormInput" id="coordinate_x1" placeholder="Please enter coordinate_x1">
+			  <input type="text" class="liveFormInput" id="coordinate_y1" placeholder="Please enter coordinate_y1">
+			  <input type="text" class="liveFormInput" id="coordinate_x2" placeholder="Please enter coordinate_x2">
+			  <input type="text" class="liveFormInput" id="coordinate_y2" placeholder="Please enter coordinate_y2">
+			  <br />
+			  <button type="submit" id="driver" class="btn btn-primary">Submit</button>
+		  </form>
+	  </div>
+
 	  <script type="text/javascript">
 		  // relative path to the sensor data for
 		  // get/post:
@@ -26,6 +38,25 @@
 
 		  // callback when the Web page has been loaded
 		  $(document).ready(function() {
+
+			  $("#driver").click(function(event){
+				  var coordinate_x1 = $("#coordinate_x1").val();
+				  var coordinate_y1 = $("#coordinate_y1").val();
+				  var coordinate_x2 = $("#coordinate_x2").val();
+				  var coordinate_y2 = $("#coordinate_y2").val();
+				  $.post(
+						  serverPath,
+						  {
+							  coordinate_x1: coordinate_x1,
+							  coordinate_y1: coordinate_y1,
+							  coordinate_x2: coordinate_x2,
+							  coordinate_y2: coordinate_y2
+						  }
+				  );
+
+			  });
+
+
 			  window.intervalId = setInterval(function() {
 				  // callback for interval timer for every second
 				  $.getJSON(serverPath,function(result){
