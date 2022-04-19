@@ -135,7 +135,7 @@ EntryCheck::EntryCheck(CrossLineSetting &&setting, EntryCheck::OnCrossCallBack *
 
 }
 
-void EntryCheck::drawCrossLine(Image &image) {
+void EntryCheck::drawCrossLine(InferenceResult &image) {
     cv::line(image.frame, crossLineSetting.pt1, crossLineSetting.pt2,
              crossLineSetting.color, crossLineSetting.thickness);
 }
