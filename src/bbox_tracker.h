@@ -36,7 +36,7 @@ public:
      *
      * @return the reference of the list of all current tracking objects
      */
-    const std::vector<TrackingObj> &getTrackingList() const;
+    std::vector<TrackingObj> &getTrackingList();
 private:
     /**
      * @brief id of next tracking object

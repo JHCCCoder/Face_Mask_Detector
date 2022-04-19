@@ -2,7 +2,7 @@
 #include "default_settings.cpp"
 
 void PrintCallBack::callback(const TrackingObj& obj) {
-    std::cout << "id: " << obj.id << " passed. Mask status:" << obj.maskWearingType << std::endl;
+    std::cout << "id: " << obj.id << obj.crossLineStatus << " passed. Mask status:" << obj.maskWearingType << std::endl;
 }
 
 Pipeline::Pipeline(bool* isRunning, EntryCheck::OnCrossCallBack* callBack)
@@ -46,10 +46,10 @@ void Pipeline::run() {
 
         auto result = detector.process(frame);
         bboxTracker.update(result.faceList);
-        auto trackingObjs = bboxTracker.getTrackingList();
+        auto& trackingObjs = bboxTracker.getTrackingList();
 
         entryChecker.drawCrossLine(result);
-        for (auto obj : trackingObjs) {
+        for (auto& obj : trackingObjs) {
             entryChecker.checkCross(obj);
         }
 

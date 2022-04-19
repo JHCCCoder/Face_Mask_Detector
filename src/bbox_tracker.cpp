@@ -114,7 +114,7 @@ void BboxTracker::deregisterObj(uint objectId) {
                    [objectId](const TrackingObj& obj) { return obj.id == objectId; }),trackingList.end());
 }
 
-const std::vector<TrackingObj> &BboxTracker::getTrackingList() const {
+std::vector<TrackingObj> &BboxTracker::getTrackingList() {
     return trackingList;
 }
 
