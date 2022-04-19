@@ -7,9 +7,9 @@
 #define COLOR_NO_MASK cv::Scalar(0, 0, 255)
 #define COLOR_WRONG_MASK cv::Scalar(5, 149, 252)
 
-FaceMaskDetector::FaceMaskDetector(const std::string& modelPath, float confidenceThreshold)
-                                   : confidenceThreshold(confidenceThreshold) {
-    model = tflite::FlatBufferModel::BuildFromFile(modelPath.c_str());
+FaceMaskDetector::FaceMaskDetector(DetectorSetting& setting)
+                                   : confidenceThreshold(setting.confidenceThreshold) {
+    model = tflite::FlatBufferModel::BuildFromFile(setting.modelPath.c_str());
     auto resolver = tflite::CreateOpResolver();
     tflite::InterpreterBuilder(*model, *resolver)(&interpreter);
 

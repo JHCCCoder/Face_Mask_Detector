@@ -7,7 +7,7 @@
 
 BOOST_AUTO_TEST_CASE(IdleTest) {
     TrackerSetting setting({3});
-    BboxTracker tracker(std::move(setting));
+    BboxTracker tracker(setting);
     std::vector<std::vector<FaceInfo>> testSources({
            {},
            {},
@@ -27,11 +27,11 @@ BOOST_AUTO_TEST_CASE(IdleTest) {
 
 BOOST_AUTO_TEST_CASE(TrackingUpdateTest) {
     TrackerSetting setting({3});
-    BboxTracker tracker(std::move(setting));
+    BboxTracker tracker(setting);
     std::vector<std::vector<FaceInfo>> testSources({
-        {{1, 1, 1, 1}},
-        {{2, 2, 2, 2}},
-        {{3, 3, 3, 3}}
+        {{{1, 1}, {1, 1}}},
+        {{{2, 2}, {2, 2}}},
+        {{{3, 3}, {3, 3}}}
     });
 
     for (const auto& faces : testSources) {
@@ -47,12 +47,12 @@ BOOST_AUTO_TEST_CASE(TrackingUpdateTest) {
 
 BOOST_AUTO_TEST_CASE(NewAppearTest) {
     TrackerSetting setting({3});
-    BboxTracker tracker(std::move(setting));
+    BboxTracker tracker(setting);
     std::vector<std::vector<FaceInfo>> testSources({
-           {{1, 1, 1, 1}},
-           {{2, 2, 2, 2}},
-           {{3, 3, 3, 3}},
-           {{3,3,3,4}, {1,1,1,1}}
+           {{{1, 1}, {1, 1}}},
+           {{{2, 2}, {2, 2}}},
+           {{{3, 3}, {3, 3}}},
+           {{{3, 3}, {3, 4}}, {{1, 1}, {1, 1}}}
     });
 
     int i = 0;
@@ -70,11 +70,11 @@ BOOST_AUTO_TEST_CASE(NewAppearTest) {
 
 BOOST_AUTO_TEST_CASE(DisappearTest) {
     TrackerSetting setting({3});
-    BboxTracker tracker(std::move(setting));
+    BboxTracker tracker(setting);
     std::vector<std::vector<FaceInfo>> testSources({
-           {{1, 1, 1, 1}},
-           {{2, 2, 2, 2}},
-           {{3, 3, 3, 3}},
+           {{{1, 1}, {1, 1}}},
+           {{{2, 2}, {2, 2}}},
+           {{{3, 3}, {3, 3}}},
            {},
            {},
            {},
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(CheckCrossLineTest) {
          {123, 255, 0},
          2
     });
-    EntryCheck checker(std::move(setting));
+    EntryCheck checker(setting);
 
     checker.checkCross(obj);
 
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE(CheckCrossLineFailTest) {
                                      {123, 255, 0},
                                      2
                              });
-    EntryCheck checker(std::move(setting));
+    EntryCheck checker(setting);
 
     checker.checkCross(obj);
 
