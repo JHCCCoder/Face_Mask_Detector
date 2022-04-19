@@ -39,7 +39,7 @@ void MaskDetector::detect(Image& image) {
 
 cv::Mat MaskDetector::drawFaceMaskRects(Image& image) {
     cv::Mat processed_frame(image.frame);
-    for (auto face : image.faceList) {
+    for (const auto& face : image.faceList) {
         if (face.maskScore == 0) continue;
 
         cv::Rect2f faceRect(face.topLeft, face.bottomRight);
