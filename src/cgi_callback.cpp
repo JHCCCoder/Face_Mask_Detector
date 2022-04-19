@@ -1,4 +1,4 @@
-/*
+//*
  * Copyright (c) 2013-2021  Bernd Porr <mail@berndporr.me.uk>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -8,16 +8,12 @@
  */
 
 #include <unistd.h>
-#include "CppTimer.h"
+#include <CppTimer.h>
 #include <opencv2/opencv.hpp>
-#include "json_fastcgi_web_api.h"
-#include "base64.h"
+#include <json_fastcgi_web_api.h>
 
-/**
- * Flag to indicate that we are running.
- * Needed later to quit the idle loop.
- **/
-int mainRunning = 1;
+#include "base64.h"
+#include "pipeline.h"
 
 /**
  * Callback handler which returns data to the
@@ -25,7 +21,7 @@ int mainRunning = 1;
  * and the timestamp is transmitted to nginx and the
  * javascript application.
  **/
-class JSONCGIADCCallback : public JSONCGIHandler::GETCallback {
+class JSONCgiGetCallback : public JSONCGIHandler::GETCallback {
 private:
     /**
      * Pointer to the ADC event handler because it keeps
@@ -33,29 +29,33 @@ private:
      * that would be probably a database class or a
      * controller keeping it all together.
      **/
-    cv::Mat cvCgiImage;
+    Pipeline* pipeline;
 
 public:
     /**
      * Constructor: argument is the cvImage callback handler
      * which keeps the data as a simple example.
      **/
-    JSONCGIADCCallback(cv::Mat argImage) {
-        cvCgiImage = argImage;
+    JSONCgiGetCallback(Pipeline* pipelinePtr) {
+        pipeline = pipelinePtr;
     }
 
     /**
      * Gets the data sends it to the webserver.
      * The callback creates two json entries.
      **/
-    virtual std::string getJSONString() {
+    std::string getJSONString() {
         JSONCGIHandler::JSONGenerator jsonGenerator;
         std::vector<unsigned char> data_encode;
-        cv::Mat image = cvCgiImage;
+
+        cv::Mat image = pipeline->getgetCurrentImage();
+        float fps = pipeline->getCurrentFPS();
         int res = imencode(".jpg", image, data_encode);
         std::string str_encode(data_encode.begin(), data_encode.end());
         const char* c = str_encode.c_str();
+
         jsonGenerator.add("mat",base64_encode(c, str_encode.size()));
+        jsonGenerator.add("fps", fps);
         return jsonGenerator.getJSON();
     }
 };
@@ -74,13 +74,14 @@ public:
     virtual void postString(std::string postArg) {}
 };
 
+
 // Main program
 int main(int argc, char *argv[]) {
-    cv::Mat CVImage = cv::imread("test1_result.jpg" );
+    // cv::Mat CVImage = cv::imread("test1_result.jpg" );
     // Setting up the JSONCGI communication
     // The callback which is called when fastCGI needs data
     // gets a pointer to the cvImage callback class.
-    JSONCGIADCCallback fastCGIADCCallback(CVImage);
+    // JSONCgiGetCallback fastCGIADCCallback(CVImage);
     CVPOSTCallback postCallback;
 
     // starting the fastCGI handler with the callback and the
