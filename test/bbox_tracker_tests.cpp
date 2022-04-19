@@ -41,8 +41,8 @@ BOOST_AUTO_TEST_CASE(TrackingUpdateTest) {
         BOOST_CHECK_EQUAL(trackingList.size(), 1);
     }
 
-    BOOST_CHECK_EQUAL(tracker.getTrackingList()[0].midpoint.x, 3);
-    BOOST_CHECK_EQUAL(tracker.getTrackingList()[0].midpoint.y, 3);
+    BOOST_CHECK_EQUAL(tracker.getTrackingList()[0].curMidpoint.x, 3);
+    BOOST_CHECK_EQUAL(tracker.getTrackingList()[0].curMidpoint.y, 3);
 }
 
 BOOST_AUTO_TEST_CASE(NewAppearTest) {
@@ -93,4 +93,34 @@ BOOST_AUTO_TEST_CASE(DisappearTest) {
     }
     trackingList = tracker.getTrackingList();
     BOOST_CHECK_EQUAL(trackingList.size(), 0);
+}
+
+BOOST_AUTO_TEST_CASE(CheckCrossLineTest) {
+    TrackingObj obj({0, {5, 5}, {0, 0}, 0, false});
+    CrossLineSetting setting({
+         {0, 3},
+         {3, 0},
+         {123, 255, 0},
+         2
+    });
+    EntryCheck checker(std::move(setting));
+
+    checker.checkCross(obj);
+
+    BOOST_CHECK_EQUAL(obj.crossLineStatus, true);
+}
+
+BOOST_AUTO_TEST_CASE(CheckCrossLineFailTest) {
+    TrackingObj obj({0, {1, 1}, {0, 0}, 0, false});
+    CrossLineSetting setting({
+                                     {0, 3},
+                                     {3, 0},
+                                     {123, 255, 0},
+                                     2
+                             });
+    EntryCheck checker(std::move(setting));
+
+    checker.checkCross(obj);
+
+    BOOST_CHECK_EQUAL(obj.crossLineStatus, false);
 }

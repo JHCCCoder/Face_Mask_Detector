@@ -1,11 +1,13 @@
-#include <paddle_api.h>
-
-using namespace paddle::lite_api;
+#include "face_mask_detector.h"
 
 int main() {
-    MobileConfig config;
-    config.set_model_from_buffer("/Users/minhao/Workspace/Face_Mask_Detector/assets/model.nb");
-    auto predictor = CreatePaddlePredictor<MobileConfig>(config);
+    std::string model_path = "assets/ssdlite_mobilenet_v2.tflite";
+    FaceMaskDetector detector(model_path, 0.5f);
+
+    auto image = cv::imread("test/test_img.jpg");
+    auto result = detector.process(image);
+
+    cv::imwrite("assets/out.jpg", result.frame);
 
     return 0;
 }

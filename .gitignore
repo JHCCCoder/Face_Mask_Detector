@@ -49,6 +49,9 @@ _deps
 # IDEA context folder
 .idea/
 
+# MacOS
+.DS_Store
+
 # executable
 FaceMaskDetector
 test/*Test

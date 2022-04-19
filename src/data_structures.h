@@ -4,6 +4,12 @@
 #include <opencv2/opencv.hpp>
 #include <vector>
 
+enum MaskWearingType {
+    WEARING_MASK = 0,
+    NO_MASK = 1,
+    INCORRECT_WEARING = 2
+};
+
 struct FaceInfo {
     // bounding box coordinates
     float x1;
@@ -15,15 +21,19 @@ struct FaceInfo {
     cv::Point2f topLeft;
     cv::Point2f bottomRight;
 
-    // face credibility faceScore
+    // face confidence faceScore
     float faceScore;
 
-    // mask credibility faceScore
+    // mask confidence faceScore
     float maskScore;
     bool isWearingMask;
+
+    // confidence score
+    float confidence;
+    MaskWearingType maskWearingType;
 };
 
-struct Image {
+struct InferenceResult {
     cv::Mat frame;
     std::vector<FaceInfo> faceList;
 };
@@ -39,17 +49,26 @@ struct MaskDetectorSetting {
 };
 
 struct FaceDetectorSetting {
-
+    float confidenceThreshold;
 };
 
 struct TrackingObj {
     uint id;
-    cv::Point2f midpoint;
+    cv::Point2f curMidpoint;
+    cv::Point2f startPoint;
     int disappearCnt;
+    bool crossLineStatus;
 };
 
 struct TrackerSetting {
     int frameToDisappear;
+};
+
+struct CrossLineSetting {
+    cv::Point2f pt1;
+    cv::Point2f pt2;
+    cv::Scalar color;
+    int thickness;
 };
 
 #endif //FACE_MASK_DETECTOR_DATA_STRUCTURES_H_
