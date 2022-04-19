@@ -17,8 +17,8 @@ class MaskDetector {
 public:
     MaskDetector(MaskDetectorSetting&& mdSetting);
 
-    void detect(Image& image);
-    cv::Mat drawFaceMaskRects(Image& image);
+    void detect(InferenceResult& image);
+    cv::Mat drawFaceMaskRects(InferenceResult& image);
 
 private:
     MobileConfig mobileConfig;

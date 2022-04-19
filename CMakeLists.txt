@@ -7,14 +7,13 @@ project(FaceMaskDetector)
 # include Tensorflow lite
 if(NOT TENSORFLOW_SOURCE_DIR)
     get_filename_component(TENSORFLOW_SOURCE_DIR
-            "${FaceMaskDetector_SOURCE_DIR}/../tensorflow-2.6.0" ABSOLUTE)
-    message(STATUS "${TENSORFLOW_SOURCE_DIR} test")
+            "${FaceMaskDetector_SOURCE_DIR}/../tensorflow_src" ABSOLUTE)
 endif()
 include_directories("${TENSORFLOW_SOURCE_DIR}")
 include_directories("${TENSORFLOW_SOURCE_DIR}/tensorflow/lite")
 SET (TFL_BUILD_DIR
         ${FaceMaskDetector_SOURCE_DIR}/../tfl_build)
-link_directories (${TFL_BUILD_DIR}/rpi_armv7l/lib)
+link_directories (${TFL_BUILD_DIR})
 
 # include flatbuffers
 SET(FLAT_BUFFERS_DIR

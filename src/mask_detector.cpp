@@ -9,7 +9,7 @@ MaskDetector::MaskDetector(MaskDetectorSetting&& mdSetting) : maskDetectionSetti
     inputTensor->Resize({1, 3, mdSetting.normalisedHeight, mdSetting.normalisedWidth});
 }
 
-void MaskDetector::detect(Image& image) {
+void MaskDetector::detect(InferenceResult& image) {
     auto* input_data = inputTensor->mutable_data<float>();
     auto* output_data = outputTensor->data<float>();
 
@@ -37,7 +37,7 @@ void MaskDetector::detect(Image& image) {
     }
 }
 
-cv::Mat MaskDetector::drawFaceMaskRects(Image& image) {
+cv::Mat MaskDetector::drawFaceMaskRects(InferenceResult& image) {
     cv::Mat processed_frame(image.frame);
     for (const auto& face : image.faceList) {
         if (face.maskScore == 0) continue;
