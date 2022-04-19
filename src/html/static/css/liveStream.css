@@ -1,0 +1,37 @@
+.imageBase{
+    text-align: center; /*让div内部文字居中*/
+    background-color: lightgray;
+    border-radius: 20px;
+    width: 60%;
+    height: 400px;
+    margin: auto;
+    /*position: absolute;*/
+    top: 500px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.liveForm{
+    margin: auto;
+    margin-top: 20px;
+    width: 60%;
+    padding: 20px;
+}
+
+.liveFormInput{
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    margin-bottom: 10px;
+    margin-right: 30px ;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    width: 45%;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

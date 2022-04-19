@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>mask_detector</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css" rel="stylesheet">
+    <!-- use our own css file -->
+    <link rel="icon shortcut" href="./img/favicon.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
+    <script src="../static/js/echarts.min.js"></script>
+    <script src="../static/js/dashBoard.js"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Mask Detector</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="liveStream.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                            Live Stream
+                        </a>
+                    </li>
+
+                </ul>
+
+
+
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dashboard</h1>
+            </div>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>150</h3>
+                                    <p> Total number of people.</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-6">
+
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>53</h3>
+                                    <p>Number of people wearing masks.</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-6">
+
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h3>44</h3>
+                                    <p>Number of people not wearing masks.</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-6">
+
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>65</h3>
+                                    <p>Number of people wearing substandard masks.</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--The state of wearing a mask-->
+                    <div class="row">
+                        <section class="col-lg-7 connectedSortable ui-sortable">
+                            <div class="card">
+                                <div class="card-header ui-sortable-handle" style="cursor: move;">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        The state of wearing a mask
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content p-0">
+
+                                        <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+                                            <div class="chartjs-size-monitor">
+                                                <div class="chartjs-size-monitor-expand">
+                                                    <div class="">放图片</div>
+                                                </div>
+                                            </div>
+                                            <!--<canvas id="revenue-chart-canvas" height="600" style="height: 300px; display: block; width: 731px;" width="1462" class="chartjs-render-monitor"></canvas>-->
+                                        </div>
+                                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                                            <!--<canvas id="sales-chart-canvas" height="0" style="height: 0px; display: block; width: 0px;" width="0" class="chartjs-render-monitor"></canvas>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="col-lg-5 connectedSortable ui-sortable">
+
+                            <div class="card bg-gradient-primary">
+
+                                <div class="card-body">
+                                    <div id="barChart" style="height: 250px; width: 100%; position: relative; overflow: hidden; background-color: transparent;">
+                                        饼状图
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
+                    <!--<div class="row">-->
+                    </div>
+                <!--</div>-->
+            </section>
+
+            <!--<canvas class="my-4 chartjs-render-monitor" id="myChart" width="2038" height="860" style="display: block; height: 430px; width: 1019px;"></canvas>-->
+
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+
+
+</body>
+
+</html>
