@@ -8,15 +8,15 @@
 #define COLOR_WRONG_MASK cv::Scalar(252, 149, 5)
 
 
-FaceMaskDetector::FaceMaskDetector(const std::string& modelPath, int modelWidth, int modelHeight,
-                                   int modelChannels, float confidenceThreshold)
-                                   : modelWidth(modelWidth),
-                                   modelHeight(modelHeight),
-                                   modelChannels(modelChannels),
-                                   confidenceThreshold(confidenceThreshold) {
+FaceMaskDetector::FaceMaskDetector(const std::string& modelPath, float confidenceThreshold)
+                                   : confidenceThreshold(confidenceThreshold) {
     model = tflite::FlatBufferModel::BuildFromFile(modelPath.c_str());
     auto resolver = tflite::CreateOpResolver();
     tflite::InterpreterBuilder(*model, *resolver)(&interpreter);
+
+    auto input = interpreter->inputs()[0];
+    modelHeight = interpreter->tensor(input)->dims->data[1];
+    modelWidth = interpreter->tensor(input)->dims->data[2];
 
     interpreter->AllocateTensors();
     interpreter->SetAllowFp16PrecisionForFp32(true);
