@@ -5,7 +5,11 @@
 
 #include "bbox_tracker.h"
 #include "face_mask_detector.h"
-#include "mysql_connection.h"
+
+class PrintCallBack : public EntryCheck::OnCrossCallBack {
+public:
+    void callback(const TrackingObj& obj);
+};
 
 class Pipeline {
 public:

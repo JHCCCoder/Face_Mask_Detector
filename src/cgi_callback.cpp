@@ -1,4 +1,4 @@
-//*
+/*
  * Copyright (c) 2013-2021  Bernd Porr <mail@berndporr.me.uk>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -48,7 +48,7 @@ public:
         JSONCGIHandler::JSONGenerator jsonGenerator;
         std::vector<unsigned char> data_encode;
 
-        cv::Mat image = pipeline->getgetCurrentImage();
+        cv::Mat image = pipeline->getCurrentImage();
         float fps = pipeline->getCurrentFPS();
         int res = imencode(".jpg", image, data_encode);
         std::string str_encode(data_encode.begin(), data_encode.end());
@@ -73,31 +73,3 @@ public:
      **/
     virtual void postString(std::string postArg) {}
 };
-
-
-// Main program
-int main(int argc, char *argv[]) {
-    // cv::Mat CVImage = cv::imread("test1_result.jpg" );
-    // Setting up the JSONCGI communication
-    // The callback which is called when fastCGI needs data
-    // gets a pointer to the cvImage callback class.
-    // JSONCgiGetCallback fastCGIADCCallback(CVImage);
-    CVPOSTCallback postCallback;
-
-    // starting the fastCGI handler with the callback and the
-    // socket for nginx.
-    JSONCGIHandler* fastCGIHandler = new JSONCGIHandler(&fastCGIADCCallback,
-                                                        &postCallback,
-                                                        "/tmp/sensorsocket");
-    fprintf(stderr,"'%s' up and running.\n",argv[0]);
-
-    // Just do nothing here and sleep. It's all dealt with in threads!
-    // At this point for example a GUI could be started such as QT
-    // Here, we just wait till the user presses ctrl-c which then
-    // sets mainRunning to zero.
-    while (mainRunning) sleep(1);
-    fprintf(stderr,"'%s' shutting down.\n",argv[0]);
-    // stops the fast CGI handlder
-    delete fastCGIHandler;
-    return 0;
-}

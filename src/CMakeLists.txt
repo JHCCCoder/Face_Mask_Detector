@@ -2,7 +2,6 @@ set (LIB_SRC
         bbox_tracker.cpp
         face_mask_detector.cpp
         pipeline.cpp
-        mysql_connection.cpp
         cgi_callback.cpp
         default_settings.cpp)
 
@@ -29,4 +28,5 @@ target_include_directories(FaceMaskDetectionLib PUBLIC "${FLAT_BUFFERS_DIR}/incl
 
 add_executable (FaceMaskDetector main.cpp)
 target_link_libraries (FaceMaskDetector FaceMaskDetectionLib ${OpenCV_LIBS} tensorflow-lite dl)
+target_link_libraries (FaceMaskDetector cpptimer rt fcgi curl)
 target_include_directories(FaceMaskDetector PRIVATE "${FLAT_BUFFERS_DIR}/include")

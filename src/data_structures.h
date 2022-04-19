@@ -34,6 +34,7 @@ struct TrackingObj {
     cv::Point2f startPoint;
     int disappearCnt;
     bool crossLineStatus;
+    MaskWearingType maskWearingType;
 };
 
 struct TrackerSetting {

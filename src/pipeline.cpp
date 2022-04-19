@@ -1,6 +1,10 @@
 #include "pipeline.h"
 #include "default_settings.cpp"
 
+void PrintCallBack::callback(const TrackingObj& obj) {
+    std::cout << "One man passed. Mask status:" << obj.maskWearingType << std::endl;
+}
+
 Pipeline::Pipeline(bool* isRunning, EntryCheck::OnCrossCallBack* callBack)
     : isRunning(isRunning), cap(0),
       bboxTracker(Setting::defaultTrackerSetting),
