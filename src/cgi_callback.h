@@ -2,7 +2,7 @@
  * @file cgi_callback.h
  * @brief cgi callback class definition
  *
- * @copyright Copyright (C) 2021  Xiaoyang Wang
+ * @copyright Copyright (C) 2022  Xiaoyang Wang
  *
  */
 

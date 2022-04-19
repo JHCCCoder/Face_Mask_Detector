@@ -1,3 +1,11 @@
+/**
+ * @file pipeline.h
+ * @brief a pipeline class, inspired by https://github.com/ESE-Peasy/PosturePerfection
+ *
+ * @copyright Copyright (C) 2022
+ *
+ */
+
 #ifndef PIPELINE_H_
 #define PIPELINE_H_
 
