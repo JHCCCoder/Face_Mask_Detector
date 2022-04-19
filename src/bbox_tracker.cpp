@@ -161,8 +161,9 @@ void EntryCheck::checkCross(TrackingObj &obj) {
     }
 }
 
-void EntryCheck::setCrossLineSetting(CrossLineSetting &&setting) {
-    crossLineSetting = setting;
+void EntryCheck::setCrossLine(cv::Point2f pt1, cv::Point2f pt2) {
+    crossLineSetting.pt1 = pt1;
+    crossLineSetting.pt2 = pt2;
 }
 
 float EntryCheck::direction(const cv::Point2f &linePt1, const cv::Point2f &linePt2, const cv::Point2f &targetPt) {

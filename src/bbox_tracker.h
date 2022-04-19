@@ -42,7 +42,7 @@ public:
     void drawCrossLine(InferenceResult& image);
     void checkCross(TrackingObj& obj);
 
-    void setCrossLineSetting(CrossLineSetting&& setting);
+    void setCrossLine(cv::Point2f pt1, cv::Point2f pt2);
 private:
     static float direction(const cv::Point2f& linePt1, const cv::Point2f& linePt2,
                     const cv::Point2f& targetPt);

@@ -9,9 +9,13 @@
 
 class Pipeline {
 public:
-    explicit Pipeline(EntryCheck::OnCrossCallBack* callBack = nullptr);
+    explicit Pipeline(bool* isRunning, EntryCheck::OnCrossCallBack* callBack = nullptr);
+
     cv::Mat getCurrentImage();
     float getCurrentFPS();
+    void setCrossLine(cv::Point2f pt1, cv::Point2f pt2);
+
+    void run();
 private:
     cv::VideoCapture cap;
     FaceMaskDetector detector;
@@ -20,8 +24,9 @@ private:
 
     std::mutex mutex;
 
-    InferenceResult* currentResult;
+    InferenceResult currentResult;
     float fps;
+    bool* isRunning;
 };
 
 #endif // PIPELINE_H_
