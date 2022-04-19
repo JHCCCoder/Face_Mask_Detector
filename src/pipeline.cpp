@@ -2,7 +2,7 @@
 #include "default_settings.cpp"
 
 void PrintCallBack::callback(const TrackingObj& obj) {
-    std::cout << "One man passed. Mask status:" << obj.maskWearingType << std::endl;
+    std::cout << "id: " << obj.id << " passed. Mask status:" << obj.maskWearingType << std::endl;
 }
 
 Pipeline::Pipeline(bool* isRunning, EntryCheck::OnCrossCallBack* callBack)
