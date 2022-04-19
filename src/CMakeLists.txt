@@ -3,7 +3,8 @@ set (LIB_SRC
         face_mask_detector.cpp
         pipeline.cpp
         mysql_connection.cpp
-        cgi_callback.cpp)
+        cgi_callback.cpp
+        default_settings.cpp)
 
 # opencv packages
 find_package (OpenCV REQUIRED)

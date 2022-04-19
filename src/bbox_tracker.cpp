@@ -4,7 +4,7 @@
 #include "bbox_tracker.h"
 
 // class BboxTracker
-BboxTracker::BboxTracker(TrackerSetting &&setting)
+BboxTracker::BboxTracker(TrackerSetting &setting)
     : trackerSetting(setting) {
     nextId = 0;
 }
@@ -25,7 +25,7 @@ void BboxTracker::update(const std::vector<FaceInfo>& faceRects) {
     std::vector<cv::Point2f> inputMidPoints;
     inputMidPoints.reserve(faceRects.size());
     for (auto& rect : faceRects) {
-        inputMidPoints.push_back(getMidpoint2f(rect.x1, rect.x2, rect.y1, rect.y2));
+        inputMidPoints.push_back(getMidpoint2f(rect.topLeft, rect.bottomRight));
     }
 
     // if no tracking object is recorded, register all points as tracking objects
@@ -129,7 +129,7 @@ cv::Point2f BboxTracker::getMidpoint2f(float x1, float x2, float y1, float y2) {
 // class BboxTracker ends
 
 
-EntryCheck::EntryCheck(CrossLineSetting &&setting, EntryCheck::OnCrossCallBack *callback)
+EntryCheck::EntryCheck(CrossLineSetting &setting, EntryCheck::OnCrossCallBack *callback)
     : crossLineSetting(setting),
     onCrossCallBack(callback) {
 

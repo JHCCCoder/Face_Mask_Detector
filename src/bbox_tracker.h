@@ -8,7 +8,7 @@
 
 class BboxTracker {
 public:
-    BboxTracker(TrackerSetting&& setting);
+    explicit BboxTracker(TrackerSetting& setting);
 
     void update(const std::vector<FaceInfo>& point);
     const std::vector<TrackingObj> &getTrackingList() const;
@@ -38,7 +38,7 @@ public:
         virtual void callback(const TrackingObj& obj) = 0;
     };
 
-    EntryCheck(CrossLineSetting&& setting, OnCrossCallBack* callback = nullptr);
+    explicit EntryCheck(CrossLineSetting& setting, OnCrossCallBack* callback = nullptr);
     void drawCrossLine(InferenceResult& image);
     void checkCross(TrackingObj& obj);
 

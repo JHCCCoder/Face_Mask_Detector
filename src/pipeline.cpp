@@ -1,6 +1,12 @@
 #include "pipeline.h"
+#include "default_settings.cpp"
 
-Pipeline::Pipeline() {
+Pipeline::Pipeline(EntryCheck::OnCrossCallBack* callBack)
+    : cap(0),
+      bboxTracker(Setting::defaultTrackerSetting),
+      entryChecker(Setting::defaultCrossLineSetting, callBack),
+      detector()
+      {
 
 }
 

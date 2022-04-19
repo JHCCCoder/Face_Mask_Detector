@@ -10,6 +10,11 @@ enum MaskWearingType {
     INCORRECT_WEARING = 2
 };
 
+struct DetectorSetting {
+    std::string modelPath;
+    float confidenceThreshold;
+};
+
 struct FaceInfo {
     cv::Point2f topLeft;
     cv::Point2f bottomRight;

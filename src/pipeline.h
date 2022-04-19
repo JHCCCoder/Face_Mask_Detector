@@ -9,7 +9,7 @@
 
 class Pipeline {
 public:
-    Pipeline();
+    explicit Pipeline(EntryCheck::OnCrossCallBack* callBack = nullptr);
     cv::Mat getCurrentImage();
     float getCurrentFPS();
 private:

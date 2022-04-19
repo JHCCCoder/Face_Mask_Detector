@@ -9,7 +9,7 @@
 
 class FaceMaskDetector {
 public:
-    FaceMaskDetector(const std::string& modelPath, float confidenceThreshold);
+    FaceMaskDetector(DetectorSetting& setting);
     InferenceResult process(cv::Mat& image);
 private:
     std::unique_ptr<tflite::Interpreter> interpreter;
