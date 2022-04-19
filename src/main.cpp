@@ -17,5 +17,6 @@ int main() {
 
     pipeline.run();
 
+    isRunning = false;
     return 0;
 }
