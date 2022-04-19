@@ -1,6 +1,10 @@
-//
-// Created by LittleSheep on 16/04/2022.
-//
+/**
+ * @file base64.h
+ * @brief a helper class to encode cv::Mat object to base64 image
+ *
+ * @copyright Copyright (C) 2022  Xiaoyang Wang
+ *
+ */
 
 #ifndef JSON_FASTCGI_WEB_API_MAIN_BASE64_H
 #define JSON_FASTCGI_WEB_API_MAIN_BASE64_H

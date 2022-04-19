@@ -1,3 +1,12 @@
+/**
+ * @file face_mask_detector.h
+ * @brief inference core class, inspired and modified from
+ * https://github.com/Qengineering/TensorFlow_Lite_Face_Mask_RPi_64-bits.git
+ *
+ * @copyright Copyright (C) 2022  Minhao Han
+ *
+ */
+
 #ifndef FACE_DETECTOR_H_
 #define FACE_DETECTOR_H_
 
