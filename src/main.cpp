@@ -1,13 +1,21 @@
-#include "face_mask_detector.h"
+#include "pipeline.h"
+#include "cgi_callback.cpp"
 
 int main() {
-    std::string model_path = "assets/ssdlite_mobilenet_v2.tflite";
-    FaceMaskDetector detector(model_path, 0.5f);
+    bool isRunning = true;
+    bool* isRunningPtr = &isRunning;
 
-    auto image = cv::imread("test/test_img.jpg");
-    auto result = detector.process(image);
+    PrintCallBack callback;
+    Pipeline pipeline(isRunningPtr, &callback);
 
-    cv::imwrite("assets/out.jpg", result.frame);
+
+    JSONCgiGetCallback cgiGetCallback(&pipeline);
+    CVPOSTCallback postCallback;
+    JSONCGIHandler* fastCGIHandler = new JSONCGIHandler(&cgiGetCallback,
+                                                        &postCallback,
+                                                        "/tmp/sensorsocket");
+
+    pipeline.run();
 
     return 0;
 }
