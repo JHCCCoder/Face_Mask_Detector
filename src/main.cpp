@@ -10,7 +10,7 @@ int main() {
 
 
     JSONCgiGetCallback cgiGetCallback(&pipeline);
-    CVPOSTCallback postCallback;
+    CVPOSTCallback postCallback(&pipeline);
     JSONCGIHandler* fastCGIHandler = new JSONCGIHandler(&cgiGetCallback,
                                                         &postCallback,
                                                         "/tmp/sensorsocket");
