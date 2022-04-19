@@ -16,51 +16,51 @@ public:
     const char * Msg;
     MYSQL mysql;
     /**
-     * a query result set that returns rows
+     * @brief a query result set that returns rows
      */
     MYSQL_RES *res;
 
     /**
-     * A type-safe representation of row data
+     * @brief A type-safe representation of row data
      */
     MYSQL_ROW column;
 
     MysqlConn(){}
     /**
-     * connect database
-     * @return
+     * @brief Database connection
+     * @return Return execution results. If successful, return ture, if not, return false.
      */
     bool ConnectMysql();
 
     /**
-     * Release Resources
+     * @brief Release database connection
      */
     void FreeConnect();
 
     /**
-     * select data
-     * @param SQL SQL statement for query
-     * @return Returned data
+     * @brief Select data from database
+     * @param SQL: SQL statement for query
+     * @return Returned data from database.
      */
     string SelectData(const char * SQL);
 
     /**
-     * insert data
-     * @param SQL  SQL statement for insert
+     * @brief Insert data to database
+     * @param SQL: SQL statement for insert
      * @return int : 0 means success; 1 means failure
      */
     int InsertData(const char * SQL);
 
     /**
-     * update data
-     * @param SQL SQL statement for update
+     * @brief Update data
+     * @param SQL: SQL statement for update
      * @return int : 0 means success; 1 means failure
      */
     int UpdateData(const char * SQL);
 
     /**
-     * delete data
-     * @param SQL SQL statement for delete
+     * @brief Delete data
+     * @param SQL: SQL statement for delete
      * @return int : 0 means success; 1 means failure
      */
     int DeleteData(const char * SQL);
