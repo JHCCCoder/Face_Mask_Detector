@@ -44,7 +44,7 @@ public:
 
     void setCrossLineSetting(CrossLineSetting&& setting);
 private:
-    float direction(const cv::Point2f& linePt1, const cv::Point2f& linePt2,
+    static float direction(const cv::Point2f& linePt1, const cv::Point2f& linePt2,
                     const cv::Point2f& targetPt);
 
     CrossLineSetting crossLineSetting;
