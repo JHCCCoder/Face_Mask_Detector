@@ -39,7 +39,7 @@ public:
     };
 
     EntryCheck(CrossLineSetting&& setting, OnCrossCallBack* callback = nullptr);
-    void drawCrossLine(Image& image);
+    void drawCrossLine(InferenceResult& image);
     void checkCross(TrackingObj& obj);
 
     void setCrossLineSetting(CrossLineSetting&& setting);

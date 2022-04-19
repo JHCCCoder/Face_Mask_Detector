@@ -9,9 +9,9 @@
 #include "data_structures.h"
 
 using namespace boost::unit_test;
-
+std::string model_path = "assets";
 BOOST_AUTO_TEST_CASE(DetectFromImageTest) {
-    std::string model_path = "assets";
+
     FaceDetector detector(model_path, 320, 240);
 
     auto image = cv::imread("test/test_img.jpg");
