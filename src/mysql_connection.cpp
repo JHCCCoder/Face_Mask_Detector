@@ -1,7 +1,3 @@
-//
-// Created by LittleSheep on 18/04/2022.
-//
-
 #include "mysql_connection.h"
 
 bool MysqlConn::ConnectMysql() {
@@ -10,7 +6,7 @@ bool MysqlConn::ConnectMysql() {
                              "localhost",//hostname
                              "root",//username
                              "123456",//password
-                             "mask_detection",//dabasename
+                             "mask_detection",//database
                              3306,//port number default 0 or 3306
                              NULL, 0
     ))) {

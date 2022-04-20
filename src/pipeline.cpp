@@ -1,3 +1,5 @@
+#include <thread>
+
 #include "pipeline.h"
 #include "default_settings.cpp"
 
@@ -59,13 +61,29 @@ void Pipeline::run() {
     }
 }
 
-CrossCallBack::CrossCallBack(){
-    MysqlConn * conn = new MysqlConn();
+SqlInsertCallback::SqlInsertCallback(){
+    conn = new MysqlConn();
     // connect Mysql
     conn->ConnectMysql();
 }
 
-CrossCallBack::~CrossCallBack(){
+SqlInsertCallback::~SqlInsertCallback(){
     conn->FreeConnect();
+}
+
+void SqlInsertCallback::callback(const TrackingObj &obj){
+    int status = obj.maskWearingType;
+    std::string query = "insert into userinfo(status) values("
+                        +std::string("'")
+                        +std::to_string(status)
+                        +std::string("'")
+                        +")";
+    auto SQL = query.c_str();
+    std::thread thread(&SqlInsertCallback::insertThread, this, SQL);
+}
+
+void SqlInsertCallback::insertThread(const char *SQL) {
+    if(conn->InsertData(SQL) == 0)
+        std::cout << "insert successful" << std::endl;
 }
 

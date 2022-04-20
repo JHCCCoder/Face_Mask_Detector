@@ -73,24 +73,14 @@ private:
     bool* isRunning;
 };
 
-class CrossCallBack :public EntryCheck::OnCrossCallBack{
+class SqlInsertCallback : public EntryCheck::OnCrossCallBack{
 private:
     MysqlConn * conn;
+    void insertThread(const char* SQL);
 
 public:
-    CrossCallBack();
-    ~CrossCallBack();
-    virtual void callback(const TrackingObj& obj){
-        const char *SQL ="";
-        int status = obj.maskWearingType;
-        std::string query = "insert into userinfo(status) values("
-                +std::string("'")
-                +std::to_string(status)
-                +std::string("'")
-                +")";
-        SQL =  query.c_str();
-        if(conn->InsertData(SQL) == 0)
-            printf("insert successful \n");
-    }
+    SqlInsertCallback();
+    ~SqlInsertCallback();
+    void callback(const TrackingObj& obj) override;
 };
 #endif // PIPELINE_H_
