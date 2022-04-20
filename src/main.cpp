@@ -5,7 +5,7 @@ int main() {
     bool isRunning = true;
     bool* isRunningPtr = &isRunning;
 
-    PrintCallBack callback;
+    SqlInsertCallback callback;
     Pipeline pipeline(isRunningPtr, &callback);
 
 
