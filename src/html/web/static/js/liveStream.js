@@ -11,5 +11,22 @@ $(document).ready(function() {
             $("#imageBase").html('<img src="'+path+'"/>');
 
         });
-    }, 1000);
+    }, 50);
+
+    $("#driver").click(function(event){
+        var coordinate_x1 = $("#coordinate_x1").val();
+        var coordinate_y1 = $("#coordinate_y1").val();
+        var coordinate_x2 = $("#coordinate_x2").val();
+        var coordinate_y2 = $("#coordinate_y2").val();
+        $.post(
+            serverPath,
+            {
+                coordinate_x1: coordinate_x1,
+                coordinate_y1: coordinate_y1,
+                coordinate_x2: coordinate_x2,
+                coordinate_y2: coordinate_y2
+            }
+        );
+
+    });
 });

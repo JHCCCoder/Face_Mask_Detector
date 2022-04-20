@@ -44,8 +44,11 @@ public:
  * @brief Callback handler which receives the JSON from jQuery
  **/
 class CVPOSTCallback : public JSONCGIHandler::POSTCallback {
+private:
+    Pipeline* pipeline;
+
 public:
-    CVPOSTCallback();
+    CVPOSTCallback(Pipeline* pipelinePtr);
 
     /**
      * @brief receives the JSON from jQuery.
