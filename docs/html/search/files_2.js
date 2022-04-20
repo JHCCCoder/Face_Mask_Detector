@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['data_5fstructures_2eh_0',['data_structures.h',['../data__structures_8h.html',1,'']]],
-  ['default_5fsettings_2ecpp_1',['default_settings.cpp',['../default__settings_8cpp.html',1,'']]]
+  ['base64_2eh_0',['base64.h',['../base64_8h.html',1,'']]],
+  ['bbox_5ftracker_2ecpp_1',['bbox_tracker.cpp',['../bbox__tracker_8cpp.html',1,'']]],
+  ['bbox_5ftracker_2eh_2',['bbox_tracker.h',['../bbox__tracker_8h.html',1,'']]]
 ];

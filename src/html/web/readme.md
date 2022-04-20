@@ -1,3 +1,4 @@
+@page web Web Application
 Components Used 
 Pycharm 2021.3.1
 Mysql 5.7 
