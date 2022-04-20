@@ -1,6 +1,10 @@
-//
-// Created by LittleSheep on 19/04/2022.
-//
+/**
+ * @file cgi_callback.h
+ * @brief cgi callback class definition
+ *
+ * @copyright Copyright (C) 2022  Xiaoyang Wang
+ *
+ */
 
 #ifndef FACE_MASK_DETECTOR_CGI_CALLBACK_H
 #define FACE_MASK_DETECTOR_CGI_CALLBACK_H
@@ -40,8 +44,11 @@ public:
  * @brief Callback handler which receives the JSON from jQuery
  **/
 class CVPOSTCallback : public JSONCGIHandler::POSTCallback {
+private:
+    Pipeline* pipeline;
+
 public:
-    CVPOSTCallback();
+    CVPOSTCallback(Pipeline* pipelinePtr);
 
     /**
      * @brief receives the JSON from jQuery.

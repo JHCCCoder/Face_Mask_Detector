@@ -1,3 +1,11 @@
+/**
+ * @file data_structures.h
+ * @brief place to store all data structures
+ *
+ * @copyright Copyright (C) 2022  Minhao Han
+ *
+ */
+
 #ifndef FACE_MASK_DETECTOR_DATA_STRUCTURES_H_
 #define FACE_MASK_DETECTOR_DATA_STRUCTURES_H_
 

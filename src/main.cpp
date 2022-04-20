@@ -5,17 +5,18 @@ int main() {
     bool isRunning = true;
     bool* isRunningPtr = &isRunning;
 
-    PrintCallBack callback;
+    SqlInsertCallback callback;
     Pipeline pipeline(isRunningPtr, &callback);
 
 
     JSONCgiGetCallback cgiGetCallback(&pipeline);
-    CVPOSTCallback postCallback;
+    CVPOSTCallback postCallback(&pipeline);
     JSONCGIHandler* fastCGIHandler = new JSONCGIHandler(&cgiGetCallback,
                                                         &postCallback,
                                                         "/tmp/sensorsocket");
 
     pipeline.run();
 
+    isRunning = false;
     return 0;
 }

@@ -20,17 +20,6 @@
 
     <link rel="stylesheet" href="../static/css/dashboard.css">
     <link rel="stylesheet" href="../static/css/liveStream.css">
-
-    <script src="../static/js/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-    <script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
-
-    <script src="../static/js/liveStream.js"></script>
-
-
-
 </head>
 
 <body>
@@ -82,12 +71,12 @@
                 <div class="row">
                     <form class="liveForm">
                         <span>Parameters of the mask identification line：</span><br/><br>
-                            <input type="text" class="liveFormInput" id="coordinate_x1"placeholder="Please enter coordinate_x1">
+                            <input type="text" class="liveFormInput" id="coordinate_x1" placeholder="Please enter coordinate_x1">
                             <input type="text" class="liveFormInput" id="coordinate_y1" placeholder="Please enter coordinate_y1">
                             <input type="text" class="liveFormInput" id="coordinate_x2" placeholder="Please enter coordinate_x2">
                             <input type="text" class="liveFormInput" id="coordinate_y2" placeholder="Please enter coordinate_y2">
                         <br />
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" id="driver" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </section>
@@ -103,7 +92,13 @@
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="../../assets/js/vendor/popper.min.js"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
 
+<script src="../static/js/liveStream.js"></script>
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 

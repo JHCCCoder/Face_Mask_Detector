@@ -1,7 +1,3 @@
-//
-// Created by LittleSheep on 18/04/2022.
-//
-
 #include "mysql_connection.h"
 
 bool MysqlConn::ConnectMysql() {
@@ -10,7 +6,7 @@ bool MysqlConn::ConnectMysql() {
                              "localhost",//hostname
                              "root",//username
                              "123456",//password
-                             "mask_detection",//dabasename
+                             "mask_detection",//database
                              3306,//port number default 0 or 3306
                              NULL, 0
     ))) {
@@ -96,47 +92,4 @@ int MysqlConn::DeleteData(const char * SQL)
         return 1;
     }
     return 0;
-}
-
-// test code
-int main() {
-    MysqlConn * conn = new MysqlConn();
-    // connect Mysql
-    conn->ConnectMysql();
-
-    /*
-     * select
-     */
-    const char *SQL ="";
-//    SQL = "SELECT * FROM user";
-//    string str = conn->SelectData(SQL);
-//
-//    if( str.length() > 0 ){
-//        printf("--------select successful----------- \n");
-//        printf("%s",str.data());
-//        printf("\n");
-//    }else{
-//        printf("%s",Msg);
-//    }
-
-    /*
-     * insert
-     */
-//    SQL = "insert into user(username,age) values('aa','30')";
-//    if(conn->InsertData(SQL) == 0)
-//        printf("insert successful \n");
-
-
-    /*
-     * update
-     */
-//    SQL = "update user set username = 'bbb',age='23' where uid = 3 ";
-//    if(conn->UpdateData(SQL) == 0)
-//        printf("update successful \n");
-
-//      SQL = "delete from user where uid = 3 ";
-//      if(conn->DeleteData(SQL) == 0)
-//          printf("delete successful \n");
-
-    conn->FreeConnect();
 }

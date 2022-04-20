@@ -36,6 +36,15 @@ std::string JSONCgiGetCallback::getJSONString() {
     return jsonGenerator.getJSON();
 }
 
-CVPOSTCallback::CVPOSTCallback() {}
+CVPOSTCallback::CVPOSTCallback(Pipeline* pipelinePtr) {
+    pipeline = pipelinePtr;
+}
 
-void CVPOSTCallback::postString(std::string postArg) {}
+void CVPOSTCallback::postString(std::string postArg) {
+    auto m = JSONCGIHandler::postDecoder(postArg);
+    float coordinate_x1 = atof(m["coordinate_x1"].c_str());
+    float coordinate_x2 = atof(m["coordinate_x2"].c_str());
+    float coordinate_y1 = atof(m["coordinate_y1"].c_str());
+    float coordinate_y2 = atof(m["coordinate_y2"].c_str());
+    pipeline->setCrossLine(cv::Point2f(coordinate_x1,coordinate_y1),cv::Point2f(coordinate_x2,coordinate_y2));
+}

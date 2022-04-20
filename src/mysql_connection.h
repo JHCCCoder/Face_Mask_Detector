@@ -1,14 +1,18 @@
-//
-// Created by LittleSheep on 18/04/2022.
-//
+/**
+ * @file mysql_connection.h
+ * @brief MySQL connection
+ *
+ * @copyright Copyright (C) 2022  Xiaoyang Wang
+ *
+ */
 
 #ifndef MYSQL_CONNECTION_H_
 #define MYSQL_CONNECTION_H_
 
-#include <mysql.h>
+#include <mysql/mysql.h>
 #include <iostream>
 #include <string>
-#include <stdio.h>
+#include <cstdio>
 using namespace std;
 
 class MysqlConn {

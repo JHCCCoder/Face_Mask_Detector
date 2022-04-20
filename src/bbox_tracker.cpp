@@ -103,15 +103,18 @@ void BboxTracker::update(const std::vector<FaceInfo>& faceRects) {
 
 void BboxTracker::registerObj(cv::Point2f midpoint) {
     TrackingObj obj({nextId++, midpoint, midpoint, 0, false});
+    std::cout << "new tracking object: " << obj.id << ", object nums: " << this->trackingList.size() << std::endl;
     this->trackingList.push_back(obj);
 }
 
 void BboxTracker::deregisterObj(uint objectId) {
+    std::cout << "deregistered tracking object: " << objectId
+        << ", object nums: " << this->trackingList.size() - 1 << std::endl;
     trackingList.erase(std::remove_if(this->trackingList.begin(), this->trackingList.end(),
                    [objectId](const TrackingObj& obj) { return obj.id == objectId; }),trackingList.end());
 }
 
-const std::vector<TrackingObj> &BboxTracker::getTrackingList() const {
+std::vector<TrackingObj> &BboxTracker::getTrackingList() {
     return trackingList;
 }
 
@@ -169,3 +172,4 @@ void EntryCheck::setCrossLine(cv::Point2f pt1, cv::Point2f pt2) {
 float EntryCheck::direction(const cv::Point2f &linePt1, const cv::Point2f &linePt2, const cv::Point2f &targetPt) {
     return ((targetPt.x - linePt1.x)*(linePt2.y - linePt1.y)) - ((linePt2.x - linePt1.x)*(targetPt.y - linePt1.y));
 }
+
