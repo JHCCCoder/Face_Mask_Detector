@@ -6,6 +6,7 @@
 
 #include "data_structures.h"
 
+
 class BboxTracker {
 public:
     explicit BboxTracker(TrackerSetting& setting);
@@ -50,5 +51,6 @@ private:
     CrossLineSetting crossLineSetting;
     OnCrossCallBack* onCrossCallBack = nullptr;
 };
+
 
 #endif // BBOX_TRACKER_H_

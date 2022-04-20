@@ -169,3 +169,4 @@ void EntryCheck::setCrossLine(cv::Point2f pt1, cv::Point2f pt2) {
 float EntryCheck::direction(const cv::Point2f &linePt1, const cv::Point2f &linePt2, const cv::Point2f &targetPt) {
     return ((targetPt.x - linePt1.x)*(linePt2.y - linePt1.y)) - ((linePt2.x - linePt1.x)*(targetPt.y - linePt1.y));
 }
+

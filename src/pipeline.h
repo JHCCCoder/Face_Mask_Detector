@@ -5,6 +5,7 @@
 
 #include "bbox_tracker.h"
 #include "face_mask_detector.h"
+#include "mysql_connection.h"
 
 class PrintCallBack : public EntryCheck::OnCrossCallBack {
 public:
@@ -33,4 +34,24 @@ private:
     bool* isRunning;
 };
 
+class CrossCallBack :public EntryCheck::OnCrossCallBack{
+private:
+    MysqlConn * conn;
+
+public:
+    CrossCallBack();
+    ~CrossCallBack();
+    virtual void callback(const TrackingObj& obj){
+        const char *SQL ="";
+        int status = obj.maskWearingType;
+        std::string query = "insert into userinfo(status) values("
+                +std::string("'")
+                +std::to_string(status)
+                +std::string("'")
+                +")";
+        SQL =  query.c_str();
+        if(conn->InsertData(SQL) == 0)
+            printf("insert successful \n");
+    }
+};
 #endif // PIPELINE_H_
