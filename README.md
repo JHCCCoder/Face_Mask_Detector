@@ -1,9 +1,8 @@
-@mainpage Face Mask Detector
-
+@mainpage   Face Mask Detector
 <br />
 
 <div align="center">
-    <img src="assets/logo.png" alt="logo" width="210" div al ign=center />
+    ![](logo.png)
 </div>
 
 <h1 align="center">Face_Mask_Detector</h1>

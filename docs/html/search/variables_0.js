@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bottomright_0',['bottomRight',['../struct_face_info.html#aaa7887d7031a1c35084742f1968dc4a9',1,'FaceInfo']]]
+  ['app_0',['app',['../namespaceapp__config.html#ade429c238dc31256747a188ff7fc6d33',1,'app_config']]]
 ];

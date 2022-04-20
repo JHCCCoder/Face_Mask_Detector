@@ -20,11 +20,6 @@
 
     <link rel="stylesheet" href="../static/css/dashboard.css">
 
-    <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-    <script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
-    <script src="/static/js/echarts.min.js"></script>
-    <script src="/static/js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -57,9 +52,6 @@
                     </li>
 
                 </ul>
-
-
-
             </div>
         </nav>
 
@@ -75,7 +67,7 @@
 
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3 id="m3"></h3>
+                                    <h3 id="m3">15</h3>
                                     <p> Total number of people.</p>
                                 </div>
                                 <div class="icon">
@@ -88,7 +80,7 @@
 
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3 id="m1"></h3>
+                                    <h3 id="m1">10</h3>
                                     <p>Number of people wearing masks.</p>
                                 </div>
                                 <div class="icon">
@@ -101,7 +93,7 @@
 
                             <div class="small-box bg-warning">
                                 <div class="inner">
-                                    <h3 id="m0"></h3>
+                                    <h3 id="m0">3</h3>
                                     <p>Number of people not wearing masks.</p>
                                 </div>
                                 <div class="icon">
@@ -114,8 +106,8 @@
 
                             <div class="small-box bg-danger">
                                 <div class="inner">
-                                    <h3 id="m4"></h3>
-                                    <p>Percentage of people wearing masks.</p>
+                                    <h3 id="m4">2</h3>
+                                    <p>Number of people wearing substandard masks.</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
@@ -158,13 +150,19 @@
                             <div class="card bg-gradient-primary">
 
                                 <div class="card-body">
-                                    <div id="barChart" style="height: 250px; width: 100%; position: relative; overflow: hidden; background-color: transparent;">
+                                    <div id="barChart" style="height: 250px; width: 100%; position: relative; overflow: hidden; background-color: transparent;" >
                                         barchart
                                     </div>
 
                                 </div>
                             </div>
 
+                            <div id="dash_show" class="container_m"> <div class="row" style="height:60%;margin-top:25px;">
+                                <div class="col-md-9">
+                                    <div id="chart_daily_movement">
+                                        <div id="chart_daily_movement" style="width:100%;height:320px;"></div>
+                                    </div>
+                                </div>
                         </section>
                     </div>
                     <!--<div class="row">-->
@@ -181,133 +179,20 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
+
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<script src="../static/js/echarts.min.js"></script>
+<script src="../static/js/dashBoard.js"></script>
+
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="../../assets/js/vendor/popper.min.js"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
 
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-var int12 = self.setInterval("timers4()", 50)
-function timers4() {
-        $.ajax({
-            url: '/api4',
-            type: 'get',
-            success: function (data) {
-                $('#m1').text(data.r1);
-                $('#m0').text(data.r0);
-                $('#m3').text(data.t);
-                $('#m4').text(data.route);
-
-            }
-        })
-    }
-
-var myChart2 = echarts.init(document.getElementById('barChart'));
- var myChart = echarts.init(document.getElementById('main'));
-    var int1 = self.setInterval("timers1()", 50)
-
-    function timers1() {
-        $.ajax({
-            url: '/api1',
-            type: 'get',
-            success: function (data) {
-                option = {
-                    tooltip: {
-                        trigger: 'axis',
-                        position: function (pt) {
-                            return [pt[0], '10%'];
-                        }
-                    },
-                    title: {
-                        left: 'center',
-                        text: 'Face Status'
-                    },
-                    toolbox: {
-                        feature: {
-                            dataZoom: {
-                                yAxisIndex: 'none'
-                            },
-                            restore: {},
-                            saveAsImage: {}
-                        }
-                    },
-                    xAxis: {
-                        type: 'time',
-                        boundaryGap: false
-                    },
-                    yAxis: {
-                        type: 'value',
-                        boundaryGap: [0, '100%']
-                    },
-                    dataZoom: [
-                        {
-                            type: 'inside',
-                            start: 0,
-                            end: 100
-                        },
-                        {
-                            start: 0,
-                            end: 100
-                        }
-                    ],
-                    series: [
-                        {
-                            name: 'Price Data',
-                            type: 'line',
-                            smooth: true,
-                            symbol: 'none',
-                            areaStyle: {},
-                            data: data.data2
-                        }
-                    ]
-                };
-                myChart.setOption(option);
-            }
-        })
-    }
-    var int2 = self.setInterval("timers2()", 50)
-
-    function timers2() {
-        $.ajax({
-            url: '/api2',
-            type: 'get',
-            success: function (data) {
-                option2 = {
-                    title: {
-                        text: 'take rate',
-                        subtext: 'rate',
-                        left: 'center'
-                    },
-                    tooltip: {
-                        trigger: 'item'
-                    },
-                    legend: {
-                        orient: 'vertical',
-                        left: 'left'
-                    },
-                    series: [
-                        {
-                            name: 'count',
-                            type: 'pie',
-                            radius: '80%',
-                            data: data.data,
-                            emphasis: {
-                                itemStyle: {
-                                    shadowBlur: 10,
-                                    shadowOffsetX: 0,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                }
-                            }
-                        }
-                    ]
-                };
-                myChart2.setOption(option2);
-            }
-        })
-    }
-
-</script>
 
 </body>
 

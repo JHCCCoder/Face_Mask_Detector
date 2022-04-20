@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readme_0',['README',['../md___users_littlesheep__c_lion_projects__face__mask__detector__r_e_a_d_m_e.html',1,'']]]
+  ['face_20mask_20detector_0',['Face Mask Detector',['../index.html',1,'']]]
 ];

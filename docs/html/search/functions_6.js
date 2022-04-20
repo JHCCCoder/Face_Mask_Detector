@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['insertdata_0',['InsertData',['../class_mysql_conn.html#adbfd5c60849e411e2f6a31a83811b9af',1,'MysqlConn']]]
+  ['facemaskdetector_0',['FaceMaskDetector',['../class_face_mask_detector.html#a19848b9860d10cc9f0645518bb666933',1,'FaceMaskDetector']]],
+  ['freeconnect_1',['FreeConnect',['../class_mysql_conn.html#a32cee8886246704ebf2c64dd81933deb',1,'MysqlConn']]]
 ];

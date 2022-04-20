@@ -10,8 +10,12 @@ var hierarchy =
       [ "JSONCgiGetCallback", "class_j_s_o_n_cgi_get_callback.html", null ]
     ] ],
     [ "InferenceResult", "struct_inference_result.html", null ],
+    [ "db.Model", null, [
+      [ "models.Info", "classmodels_1_1_info.html", null ]
+    ] ],
     [ "MysqlConn", "class_mysql_conn.html", null ],
     [ "EntryCheck::OnCrossCallBack", "class_entry_check_1_1_on_cross_call_back.html", [
+      [ "CrossCallBack", "class_cross_call_back.html", null ],
       [ "PrintCallBack", "class_print_call_back.html", null ]
     ] ],
     [ "Pipeline", "class_pipeline.html", null ],

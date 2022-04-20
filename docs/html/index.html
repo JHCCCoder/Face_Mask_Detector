@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Face_Mask_Detector: Main Page</title>
+<title>Face_Mask_Detector: Face Mask Detector</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,26 +90,129 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </iframe>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Face_Mask_Detector Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Face Mask Detector </div></div>
 </div><!--header-->
 <div class="contents">
-<ul><li><a href="index.html"><span>Main&#160;Page</span></a>
-</li><li><a href="namespaces.html"><span>Namespaces</span></a>
-<ul><li><a href="namespaces.html"><span>Namespace&#160;List</span></a>
-</li><li><a href="namespacemembers.html"><span>Namespace&#160;Members</span></a>
-</li></ul>
-</li><li><a href="annotated.html"><span>Classes</span></a>
-<ul><li><a href="annotated.html"><span>Class&#160;List</span></a>
-</li><li><a href="classes.html"><span>Class&#160;Index</span></a>
-</li><li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a>
-</li><li><a href="functions.html"><span>Class&#160;Members</span></a>
-</li></ul>
-</li><li><a href="files.html"><span>Files</span></a>
-<ul><li><a href="files.html"><span>File&#160;List</span></a>
-</li><li><a href="globals.html"><span>File&#160;Members</span></a>
-</li></ul>
-</li></ul>
+<div class="textblock"><p ><br  />
+</p>
+<div align="center"> <img src="logo.png" alt="" class="inline"/>   </div><div align="center"></div><h1 align="center">Face_Mask_Detector</h1>
+<p ><details open="open">
+ <summary>Catalogue</summary> </p><ol>
+<li>
+<a href="#story">Story</a> </li>
+<li>
+<a href="#about-the-project">About The Project</a> <ul>
+<li>
+<a href="#components-used">Components Used</a> </li>
+<li>
+<a href="#built-with">Built With</a> </li>
+</ul>
+</li>
+<li>
+<a href="#getting-started">Getting Started</a> <ul>
+<li>
+<a href="#prerequisites">Prerequisites</a> </li>
+<li>
+<a href="#installing">Installing</a> </li>
+</ul>
+<br  />
+ </li>
+<li>
+<a href="#usage">Usage</a> </li>
+<li>
+<a href="#license">License</a> </li>
+<li>
+<a href="#authors">Authors</a> </li>
+<li>
+<a href="#acknowledgements">Acknowledgements</a> </li>
+</ol>
+<p></details>
+</p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Story</h2>
+<p >Since the outbreak of the epidemic in 2020, it has still not been controlled, and wearing a mask is the most effective way to prevent infection, so our idea for this project is to make a mask detector. The face mask detector is a real-time mask detection application based on Raspberry Pi. It can detect in real time whether pedestrians passing by the detector are wearing masks, and give a judgment result. If wearing a mask will give a green face recognition box, otherwise it will give a red face recognition box.</p>
+<p >Besides that, some statistics, for example, the ratio of people wearing face coverings can be useful to the government.</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+About The Project</h2>
+<p >This project is consisted of two independent application:</p><ul>
+<li>a c++ program running on raspberry pi 4 (connected with a pi camera), which can<ul>
+<li>recognize whether a passenger is wearing a mask or not</li>
+<li>detect whether he or she is entering this zone (by setting a line in the )</li>
+<li>provide a web interface for communication through fastcgi</li>
+</ul>
+</li>
+<li>a web application exploiting the data produced by c++ program which can<ul>
+<li>display a simple dashboard</li>
+<li>use the fastcgi web interface to see the realtime processed image from camera.</li>
+</ul>
+</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md2"></a>
+Components Used</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/lite/">Tensorflow Lite C++ API</a></li>
+<li><a href="https://opencv.org/">OpenCV C++ API</a></li>
+<li><a href="https://github.com/berndporr/cppTimer">CppTimer</a></li>
+<li><a href="https://github.com/berndporr/json_fastcgi_web_api">JsonFastCGI</a></li>
+<li><a href="https://github.com/berndporr/cppThread">cppThread</a></li>
+<li><a href="https://www.boost.org/">Boost</a></li>
+<li><a href="https://nginx.org/en/">Nginx</a>, see <code>nginx-sites-enabled-default</code> file under <code>assets</code> folder</li>
+<li><a href="https://github.com/google/flatbuffers">FlatBuffer</a></li>
+<li><a href="https://www.mysql.com/">mysql</a></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md3"></a>
+Built With</h3>
+<ul>
+<li><a href="https://cmake.org/">CMake</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Getting Started</h2>
+<h3><a class="anchor" id="autotoc_md5"></a>
+Prerequisites</h3>
+<p >Before starting playing around <a class="el" href="class_face_mask_detector.html" title="Inference core to detect whether people in the image is wearing mask or not.">FaceMaskDetector</a> on your personal devices, firstly you need to</p><ul>
+<li>install OpenCV</li>
+<li>install Tensorflow Lite C++ (2.6.0 in this project), there might be some problems when building TFL under 32-bit raspberry pi, it is recommended to refer to <a href="https://qengineering.eu/install-tensorflow-2-lite-on-raspberry-pi-4.html">this tutorial</a></li>
+<li></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Build</h3>
+<p >To build this project, follow the next steps: </p><div class="fragment"><div class="line">git clone https://github.com/Hannidiot/Face_Mask_Detector</div>
+<div class="line"># before building this project, it&#39;s better to check CMakeList.txt that every prerequisite is at right position.</div>
+<div class="line">cd Face_Mask_Detector</div>
+<div class="line">cmake .</div>
+<div class="line">make</div>
+<div class="line">./src/FaceMaskDetector</div>
+</div><!-- fragment --><p >If no error generated, then the program is running! To see the realtime processed image, try launching the web application.</p>
+<h3><a class="anchor" id="autotoc_md7"></a>
+Test</h3>
+<div class="fragment"><div class="line">cmake .</div>
+<div class="line">make</div>
+<div class="line">make test</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
+Usage</h2>
+<ul>
+<li>Include screenshots, video demos and code examples to demonstrate the project.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md9"></a>
+License</h2>
+<p >Distributed under the Apache License 2.0. See <a href="https://github.com/RTEP-zero-to-one/FacialDecorationTracing/blob/dev/LICENSE"><code>LICENSE</code></a> for more information.</p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Authors</h2>
+<ul>
+<li><b>Junhao Cheng</b> (<a href="https://github.com/JHCCCoder">https://github.com/JHCCCoder</a>)</li>
+<li><b>Minhao Han</b> (<a href="https://github.com/Hannidiot">https://github.com/Hannidiot</a>)</li>
+<li><b>Xiaoyang Wang</b> ()</li>
+<li><b>Ning li</b> ()</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Acknowledgements</h2>
+<ul>
+<li>Hat tip to anyone whose code was used</li>
+<li>Inspiration</li>
+<li>etc </li>
+</ul>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
