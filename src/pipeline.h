@@ -76,7 +76,6 @@ private:
 class SqlInsertCallback : public EntryCheck::OnCrossCallBack{
 private:
     MysqlConn * conn;
-    void insertThread(const char* SQL);
 
 public:
     SqlInsertCallback();
