@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7ecrosscallback_0',['~CrossCallBack',['../class_cross_call_back.html#a5ae54bb6170ed45e17d34b544a415874',1,'CrossCallBack']]]
+  ['_7esqlinsertcallback_0',['~SqlInsertCallback',['../class_sql_insert_callback.html#ad413b36d4e802058c4d855fdf57ca9bd',1,'SqlInsertCallback']]]
 ];

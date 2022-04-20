@@ -30,6 +30,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "pipeline.h", "pipeline_8h.html", [
       [ "PrintCallBack", "class_print_call_back.html", "class_print_call_back" ],
       [ "Pipeline", "class_pipeline.html", "class_pipeline" ],
-      [ "CrossCallBack", "class_cross_call_back.html", "class_cross_call_back" ]
+      [ "SqlInsertCallback", "class_sql_insert_callback.html", "class_sql_insert_callback" ]
     ] ]
 ];
