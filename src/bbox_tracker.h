@@ -178,4 +178,5 @@ private:
     OnCrossCallBack* onCrossCallBack = nullptr;
 };
 
+
 #endif // BBOX_TRACKER_H_

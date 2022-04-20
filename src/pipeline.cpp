@@ -6,11 +6,11 @@ void PrintCallBack::callback(const TrackingObj& obj) {
 }
 
 Pipeline::Pipeline(bool* isRunning, EntryCheck::OnCrossCallBack* callBack)
-    : isRunning(isRunning), cap(0),
-      bboxTracker(Setting::defaultTrackerSetting),
-      entryChecker(Setting::defaultCrossLineSetting, callBack),
-      detector(Setting::defaultDetectorSetting)
-      {
+        : isRunning(isRunning), cap(0),
+          bboxTracker(Setting::defaultTrackerSetting),
+          entryChecker(Setting::defaultCrossLineSetting, callBack),
+          detector(Setting::defaultDetectorSetting)
+{
     if (!cap.isOpened()) {
         throw std::runtime_error("Cannot access camera");
     }
@@ -58,3 +58,14 @@ void Pipeline::run() {
         lock.unlock();
     }
 }
+
+CrossCallBack::CrossCallBack(){
+    MysqlConn * conn = new MysqlConn();
+    // connect Mysql
+    conn->ConnectMysql();
+}
+
+CrossCallBack::~CrossCallBack(){
+    conn->FreeConnect();
+}
+
