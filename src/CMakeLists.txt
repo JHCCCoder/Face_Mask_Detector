@@ -3,7 +3,8 @@ set (LIB_SRC
         face_mask_detector.cpp
         pipeline.cpp
         cgi_callback.cpp
-        default_settings.cpp)
+        default_settings.cpp
+        mysql_connection.cpp)
 
 # opencv packages
 find_package (OpenCV REQUIRED)
@@ -22,11 +23,18 @@ link_directories(${FaceMaskDetector_SOURCE_DIR}/../tfl_build/rpi_armv7l/lib)
 SET(FLAT_BUFFERS_DIR
         ${FaceMaskDetector_SOURCE_DIR}/../flatbuffers)
 
+set(CMAKE_MODULE_PATH ${FaceMaskDetector_SOURCE_DIR})
+find_package(MySQL REQUIRED)
+include_directories(${MYSQL_INCLUDE_DIRS})
+message(STATUS "${MYSQL_INCLUDE_DIRS}")
+message(STATUS "${MYSQL_LIBRARIES}")
+
 # build library for test
 add_library (FaceMaskDetectionLib STATIC ${LIB_SRC})
+target_link_libraries (FaceMaskDetectionLib ${MYSQL_LIBRARIES})
 target_include_directories(FaceMaskDetectionLib PUBLIC "${FLAT_BUFFERS_DIR}/include")
 
 add_executable (FaceMaskDetector main.cpp)
 target_link_libraries (FaceMaskDetector FaceMaskDetectionLib ${OpenCV_LIBS} tensorflow-lite dl)
-target_link_libraries (FaceMaskDetector cpptimer rt fcgi curl)
+target_link_libraries (FaceMaskDetector cpptimer rt fcgi curl ${MYSQL_LIBRARIES})
 target_include_directories(FaceMaskDetector PRIVATE "${FLAT_BUFFERS_DIR}/include")

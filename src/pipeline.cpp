@@ -64,7 +64,9 @@ void Pipeline::run() {
 SqlInsertCallback::SqlInsertCallback(){
     conn = new MysqlConn();
     // connect Mysql
-    conn->ConnectMysql();
+    if (!conn->ConnectMysql()) {
+        throw std::runtime_error("Cannot establish sql connection");
+    }
 }
 
 SqlInsertCallback::~SqlInsertCallback(){
@@ -79,10 +81,6 @@ void SqlInsertCallback::callback(const TrackingObj &obj){
                         +std::string("'")
                         +")";
     auto SQL = query.c_str();
-    std::thread thread(&SqlInsertCallback::insertThread, this, SQL);
-}
-
-void SqlInsertCallback::insertThread(const char *SQL) {
     if(conn->InsertData(SQL) == 0)
         std::cout << "insert successful" << std::endl;
 }
