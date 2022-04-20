@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp'],['../mysql__connection_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;mysql_connection.cpp']]],
+  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
   ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
   ['maskwearingtype_2',['maskWearingType',['../struct_face_info.html#aad58fd7427e5e3f8a7b22962b738a028',1,'FaceInfo::maskWearingType()'],['../struct_tracking_obj.html#afd72e4af71a11ba2be751e0820d4f5cf',1,'TrackingObj::maskWearingType()']]],
   ['maskwearingtype_3',['MaskWearingType',['../data__structures_8h.html#a1c458a5fc370acb896a14937cc9362f2',1,'data_structures.h']]],

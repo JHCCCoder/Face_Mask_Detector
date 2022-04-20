@@ -20,13 +20,14 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
       [ "FaceMaskDetector", "class_face_mask_detector.html", "class_face_mask_detector" ]
     ] ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
-    [ "mysql_connection.cpp", "mysql__connection_8cpp.html", "mysql__connection_8cpp" ],
+    [ "mysql_connection.cpp", "mysql__connection_8cpp.html", null ],
     [ "mysql_connection.h", "mysql__connection_8h.html", [
       [ "MysqlConn", "class_mysql_conn.html", "class_mysql_conn" ]
     ] ],
     [ "pipeline.cpp", "pipeline_8cpp.html", null ],
     [ "pipeline.h", "pipeline_8h.html", [
       [ "PrintCallBack", "class_print_call_back.html", "class_print_call_back" ],
-      [ "Pipeline", "class_pipeline.html", "class_pipeline" ]
+      [ "Pipeline", "class_pipeline.html", "class_pipeline" ],
+      [ "CrossCallBack", "class_cross_call_back.html", "class_cross_call_back" ]
     ] ]
 ];

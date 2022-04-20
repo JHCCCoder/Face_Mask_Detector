@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['callback_0',['callback',['../class_entry_check_1_1_on_cross_call_back.html#ae5e46130bde7107a5d0cf4efc53a5f84',1,'EntryCheck::OnCrossCallBack::callback()'],['../class_print_call_back.html#ac4b7bb7e51cf5e48497131f4717a4ca8',1,'PrintCallBack::callback()']]],
+  ['callback_0',['callback',['../class_entry_check_1_1_on_cross_call_back.html#ae5e46130bde7107a5d0cf4efc53a5f84',1,'EntryCheck::OnCrossCallBack::callback()'],['../class_print_call_back.html#ac4b7bb7e51cf5e48497131f4717a4ca8',1,'PrintCallBack::callback()'],['../class_cross_call_back.html#a37820702e1f451ee2c0ac9997692bfcd',1,'CrossCallBack::callback()']]],
   ['cgi_5fcallback_2ecpp_1',['cgi_callback.cpp',['../cgi__callback_8cpp.html',1,'']]],
   ['cgi_5fcallback_2eh_2',['cgi_callback.h',['../cgi__callback_8h.html',1,'']]],
   ['checkcross_3',['checkCross',['../class_entry_check.html#a3a1cd764bce75dbd349133bc4bec0561',1,'EntryCheck']]],
@@ -13,8 +13,9 @@ var searchData=
   ['confidence_10',['confidence',['../struct_face_info.html#ad7b2c4adcdd9794b0e3329dd98397e62',1,'FaceInfo']]],
   ['confidencethreshold_11',['confidenceThreshold',['../struct_detector_setting.html#aef7657cefdf1a7ac8bd60056b952d746',1,'DetectorSetting']]],
   ['connectmysql_12',['ConnectMysql',['../class_mysql_conn.html#a228f84f84f365a6ba393f7d454b033a0',1,'MysqlConn']]],
-  ['crosslinesetting_13',['CrossLineSetting',['../struct_cross_line_setting.html',1,'']]],
-  ['crosslinestatus_14',['crossLineStatus',['../struct_tracking_obj.html#ab825c1163a1950b7e55ef4e931caafe3',1,'TrackingObj']]],
-  ['curmidpoint_15',['curMidpoint',['../struct_tracking_obj.html#ad4b1068db17e31a4ad2a4ef868b11b9a',1,'TrackingObj']]],
-  ['cvpostcallback_16',['CVPOSTCallback',['../class_c_v_p_o_s_t_callback.html',1,'CVPOSTCallback'],['../class_c_v_p_o_s_t_callback.html#a25cf3d4c504a62660787410915e80d88',1,'CVPOSTCallback::CVPOSTCallback()']]]
+  ['crosscallback_13',['CrossCallBack',['../class_cross_call_back.html',1,'CrossCallBack'],['../class_cross_call_back.html#ac60ec01acd5adc9efa27e40bc4cfae5c',1,'CrossCallBack::CrossCallBack()']]],
+  ['crosslinesetting_14',['CrossLineSetting',['../struct_cross_line_setting.html',1,'']]],
+  ['crosslinestatus_15',['crossLineStatus',['../struct_tracking_obj.html#ab825c1163a1950b7e55ef4e931caafe3',1,'TrackingObj']]],
+  ['curmidpoint_16',['curMidpoint',['../struct_tracking_obj.html#ad4b1068db17e31a4ad2a4ef868b11b9a',1,'TrackingObj']]],
+  ['cvpostcallback_17',['CVPOSTCallback',['../class_c_v_p_o_s_t_callback.html',1,'CVPOSTCallback'],['../class_c_v_p_o_s_t_callback.html#a832e87502310e85a11352cbc280b4c65',1,'CVPOSTCallback::CVPOSTCallback()']]]
 ];

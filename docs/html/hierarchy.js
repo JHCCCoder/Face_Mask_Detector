@@ -12,6 +12,7 @@ var hierarchy =
     [ "InferenceResult", "struct_inference_result.html", null ],
     [ "MysqlConn", "class_mysql_conn.html", null ],
     [ "EntryCheck::OnCrossCallBack", "class_entry_check_1_1_on_cross_call_back.html", [
+      [ "CrossCallBack", "class_cross_call_back.html", null ],
       [ "PrintCallBack", "class_print_call_back.html", null ]
     ] ],
     [ "Pipeline", "class_pipeline.html", null ],
